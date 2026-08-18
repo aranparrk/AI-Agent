@@ -5,16 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+     /* block : 한 라인을 다 내 영역으로
+         inline : 박스크기 안 잡힘, content영역만 쓰는 것, 크기를 지정해도 크기가 안 바뀜 
+         inline-block : 내가 잡은 영역은 잡힘, 크기 지정 가능 바깥은 inline이라 내 영역이 아니라 박스가 딸려옴 */
+    
+    /*
     p {
-      display: inline-flex;
-      width: 300px;
-      height: 80px;
+      display: inline-block; 
+      width: 300px; 
+      height: 80px; 
       background-color: royalblue;
       border-radius: 10px;
       color: white;
-      font-weight: bold;
-      justify-content: center;
-      align-items: center;
+      font-weight: bold; 
+    }
+    */
+    
+    .box {
+      width: 400px;
+      padding: 10px;
+      margin: auto;
+      border-radius: 10px 10px 0 0;
+      margin-bottom: 10px;
+      box-shadow: 5px 5px 30px black;
+    }
+    .box1{
+      background-color: orange;
+    }
+
+    .box2{
+      background-color: royalblue;
+    }
+
+    .box3{
+      background-color: pink;
     }
   </style>
 </head>
@@ -23,6 +47,29 @@
   <p>Box1</p>
   <p>Box2</p>
   <p>Box3</p>
+
+  <div class="box box1"> 
+    <h2>영화 순위</h2>
+    <p>1. 오디세이</p>
+    <p>2. 스파이더맨</p>
+    <p>3. 하츄핑</p>
+  </div>
+
+  <div class="box box2"> 
+    <h2>TV 드라마 순위</h2>
+    <p>1. 아파트</p>
+    <p>2. 동궁</p>
+    <p>3. 김부장</p>
+  </div>
+  
+  <!-- TV 예능 순위 -->
+  <div class="box box3"> 
+    <h2>TV 예능 순위</h2>
+    <p>1. 런닝맨</p>
+    <p>2. 유퀴즈</p>
+    <p>3. 라디오스타</p>
+  </div>
+
   <!-- 인라인(Inline) 타입의 요소 : 요소의 내용(content)만큼만 차지, span, input -->
   
 </body>
