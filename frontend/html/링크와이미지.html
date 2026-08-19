@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    a {
+      text-decoration: none;
+      /* 밑줄 지우기 */
+    }
+
+    img {
+      display: block;
+    }
+
+    .bear {
+      width: 320px;
+      height: 320px;
+      border: 1px solid black;
+      background-color: aqua;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .android {
+      width: 128px;
+      height: 128px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 절대주소 -->
+  <a href="https://naver.com" target="_blank">네이버</a><br> <!-- 새창으로 열림 -->
+  <a href="https://google.com">구글</a><br><!-- 같은 창으로 열림 -->
+
+  <!-- 상대주소 -->
+  <a href="./기본.html" target="_blank">기본 페이지 연결</a><br> <!-- 상대경로, 내 현재 위치 기준 -->
+  <a href="./test/리스트.html" target="_blank">기본 페이지 연결</a><br> <!-- 하위 경로 -->
+
+  <!-- 카카오 이동을 새로운 페이지에서 열기 -->
+  <a href="https://www.kakaocorp.com/" target="_blank">카카오</a><br>
+
+  <!-- chatGPT를 현재 페이지에서 열기  -->
+  <a href="https://chatgpt.com/">chatGPT</a><br>
+
+  <!-- img 태그 -->
+  <img class="bear" src="./bear.png" alt="곰돌이이미지">
+
+  <!-- 이미지를 링크로 걸기 -->
+  <a href="https://google.com">
+    <img src="./google_logo.png" alt="구글이미지">
+  </a>
+
+  <!-- 안드로이드 아이콘을 누르면 안드로이드 페이지로 이동 -->
+  <a href="https://www.android.com/">
+    <img class="android" src="./android.png" alt="안드로이드이미지">
+  </a>
+  
+  <img src="./beach.jpg" alt="바다이미지">
+</body>
+
+</html>
