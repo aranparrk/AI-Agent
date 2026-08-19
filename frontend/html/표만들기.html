@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
@@ -20,40 +20,54 @@
     th {
       background: orange;
     }
+
+    .score-table th,
+    .score-table td {
+      padding: 4px 10px;
+    }
   </style>
 </head>
 
 <body>
   <table>
     <caption>표 제목 지정</caption>
-    <tr>
-      <th>번호</th>
-      <th>상품명</th>
-      <th>수량</th>
-      <th>가격</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>콜라</td>
-      <td>1개</td>
-      <td>1,500원</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>사이다</td>
-      <td>2개</td>
-      <td>1,000원</td>
-    </tr>
-
-    <tr>
-      <td>3</td>
-      <td>탄산수</td>
-      <td>3개</td>
-      <td>1,000원</td>
-    </tr>
+    <thead> <!-- 웹 접근성을 위해, 스크린리더로 읽었을 때 필요 -->
+      <tr>
+        <th>번호</th>
+        <th>상품명</th>
+        <th>수량</th>
+        <th>가격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>콜라</td>
+        <td>1개</td>
+        <td>1,500원</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>사이다</td>
+        <td>2개</td>
+        <td rowspan="2">1,000원</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>탄산수</td>
+        <td>3개</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>총금액</td>
+        <td colspan="3">3,500원</td>
+      </tr>
+    </tfoot>
   </table>
 
   <table>
+    <caption>사용자 정보</caption>
     <tr>
       <th>이름</th>
       <th>나이</th>
@@ -132,6 +146,68 @@
       <td>여자</td>
     </tr>
   </table>
-</body>
 
+  <!-- 연습문제 -->
+  <table class="score-table">
+    <caption>학생 성적표</caption>
+    <colgroup>
+      <col style="background-color: #aaa; width: 140px;">
+      <col style="width: 120px;">
+      <col style="width: 120px;">
+      <col style="width: 120px;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>국어</th>
+        <th>영어</th>
+        <th>수학</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>문동은</td>
+        <td>55</td>
+        <td>67</td>
+        <td>99</td>
+      </tr>
+      <tr>
+        <td>주여정</td>
+        <td>67</td>
+        <td>87</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>박연진</td>
+        <td>88</td>
+        <td>99</td>
+        <td>67</td>
+      </tr>
+      <tr>
+        <td>전재준</td>
+        <td>67</td>
+        <td>55</td>
+        <td>44</td>
+      </tr>
+      <tr>
+        <td>하도영</td>
+        <td>55</td>
+        <td>67</td>
+        <td>88</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>과목평균</td>
+        <td>55</td>
+        <td>67</td>
+        <td>88</td>
+      </tr>
+      <tr>
+        <td>전체평균</td>
+        <td colspan="3">67</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
 </html>
