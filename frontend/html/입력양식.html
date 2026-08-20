@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="URL주소" method="get">
+    <input type="text" name="username" value="초기값">
+    <label><input type="radio" name="gender" value="male">남성</label>
+    <label><input type="radio" name="gender" value="female">여성</label>
+    <br>
+    <label for="apple">사과</label>
+    <input type="radio" id="apple" name="fruit" value="apple">
+    <label for="grape">포도</label>
+    <input type="radio" id="grape" name="fruit" value="grape">
+    <label for="watermelon">수박</label>
+    <input type="radio" id="watermelon" name="fruit" value="watermelon">
+    <label for="orange">오렌지</label>
+    <input type="radio" id="orange" name="fruit" value="orange">
+    <label for="banana">바나나</label>
+    <input type="radio" id="banana" name="fruit" value="banana">
+    <label for="strawberry">딸기</label>
+    <input type="radio" id="strawberry" name="fruit" value="strawberry">
+    <label for="melon">메론</label>
+    <input type="radio" id="melon" name="fruit" value="melon">
+    <br>
+
+    <!-- 비밀번호 -->
+    <label>비밀번호 <input type="password" name="pwd" placeholder="비밀번호"></label>
+
+    <!-- 그룹화 : 여러 입력 항목을 묶어 줄 때 사용 -->
+    <fieldset>
+      <legend>회원가입</legend>
+      <label>아이디 <input type="text" name="id" placeholder="아이디 입력" required></label>
+      <label>패스워드 <input type="password" name="pwd" placeholder="비밀번호 입력"></label>
+    </fieldset>
+
+    <!-- 다중줄 입력 -->
+    <textarea name="desc" rows="5" cols="30">다중행 입력</textarea>
+
+    <button type="submit"><img src="./facebook.png" alt="페이스북 버튼">등록</button>
+  </form>
+</body>
+
+</html>

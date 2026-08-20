@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개인 연습</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    .pass {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <thead style="background-color: pink;">
+      <tr>
+        <th>이름</th>
+        <th>점수</th>
+      </tr>
+    </thead>
+    <tbody id='scoreBody'>
+    </tbody>
+  </table>
+
+  <script>
+    const students = [{ name: "문동은", score: 55 },
+    { name: "주여정", score: 67 },
+    { name: "박연진", score: 99 }
+    ]
+
+    let html = ""
+
+    console.log(students.length)
+    console.log(students[0].score)
+
+    for (let i = 0; i < students.length; i++) {
+      let className = "";
+
+      if (students[i].score >= 60) {
+        className = "pass"
+        console.log(students[i])
+      }
+
+      html += `
+        <tr>
+          <td>${students[i].name}</td>
+          <td class="${className}">${students[i].score}</td>
+        </tr>`;
+    }
+    document.querySelector("#scoreBody").innerHTML = html;
+  </script>
+</body>
+
+</html>

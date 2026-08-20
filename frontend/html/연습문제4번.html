@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width: 30px;
+      margin-top: 10px;
+    }
+    input{
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form action="">
+      <fieldset>
+        <legend>기본 정보</legend>
+        <div>
+          <label for="id">아이디</label>
+          <input type="text" id="id" name="id" value="aranparrk" readonly>
+        </div>
+        <div>
+          <label for="pwd">패스워드</label>
+          <input type="password" id="pwd" name="pwd">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>세부 정보</legend>
+        <div>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="@를 넣어야 됩니다.">
+        </div>
+        <div>
+          <label for="phone">전화번호</label>
+          <input type="tel" id="phone" name="phone" placeholder="하이픈을 넣지 마세요">
+        </div>
+        <div>
+          <label for="age">나이</label>
+          <input type="number" id="age" name="age">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>주소 입력</legend>
+        <label for="city">도시</label>
+        <select name="city" id="city">
+          <option value="gangnam">강남구</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>성별</legend>
+        <label for="male">남성</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="female">여성</label>
+        <input type="radio" id="female" name="gender" value="female">
+      </fieldset>
+      <fieldset>
+        <legend>직업</legend>
+        <label for="student">학생</label>
+        <input type="radio" id="student" name="job" value="student">
+        <label for="officeworker">회사원</label>
+        <input type="radio" id="officeworker" name="job" value="officeworker">
+        <label for="homemaker">주부</label>
+        <input type="radio" id="homemaker" name="job" value="homemaker">
+        <label for="unemployed">무직</label>
+        <input type="radio" id="unemployed" name="job" value="unemployed">
+      </fieldset>
+      <fieldset>
+        <legend>취미를 선택하세요.</legend>
+        <label for="exercise">운동</label>
+        <input type="radio" id="exercise" name="hobby" value="exercise">
+        <label for="music">음악</label>
+        <input type="radio" id="music" name="hobby" value="music" checked>
+        <label for="drawing">그림</label>
+        <input type="radio" id="drawing" name="hobby" value="drawing">
+      </fieldset>
+      <div>
+        <label for="year">가입일</label>
+        <input type="date" id="year" name="year">
+      </div>
+      <div>
+        <label for="introduce">소개글</label>
+        <br>
+        <textarea name="introduce" id="introduce" cols="50" rows="8"></textarea>
+      </div>
+      <button type="submit"><img src="./bear.png">제출</button>
+      <button type="reset"><img src="./bear.png">초기화</button>
+    </form>
+  </div>
+</body>
+
+</html>

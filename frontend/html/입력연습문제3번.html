@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    label{
+      display: inline-block;
+      width: 80px;
+      margin: 2px;
+    }
+    input {
+      width: 300px;
+    }
+    input[type="date"] {
+      width: 100px;
+    }
+    .button {
+      text-align: center;
+    }
+    button{
+      margin-top: 20px;
+      margin-right: 10px;
+      width: 150px;
+      height: 50px;
+      background-color: white;
+    }
+    .container {
+      width: 880px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>아이패드 주문하기</h1>
+    <form action="">
+      <fieldset>
+        <legend><strong>배송정보</strong></legend>
+        <div>
+          <label for="product">주문 상품</label>
+          <input type="text" id="product" value="아이패드 12.9인치" name="product" readonly>
+        </div>
+        <div>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div>
+          <label for="addr">배송 주소</label>
+          <input type="text" id="addr" name="addr" required>
+        </div>
+        <div>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div>
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" name="phone" placeholder="하이픈 빼고 입력해주세요 (01012345678)">
+        </div>
+        <div>
+          <label for="deliveryOption">배송 지정</label>
+          <input type="date" id="deliveryOption" name="deliveryOption"> (주문일로부터 최소 3일 이후)
+        </div>
+      </fieldset>
+      <div class="button">
+        <button type="submit">주문하기</button>
+        <button type="reset">취소하기</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
