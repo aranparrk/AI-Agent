@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .container {
+      width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      text-align: center;
+    }
+
+    legend {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .delivery-info label {
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+    }
+
+    input {
+      width: 300px;
+      height: 28px;
+      margin: 5px;
+    }
+
+    input[type="radio"] {
+      width: auto;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    input[type="date"] {
+      width: 150px;
+    }
+
+    textarea {
+      width: 600px;
+    }
+
+    button {
+      width: 150px;
+      height: 45px;
+      margin-top: 20px;
+      margin-right: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: black;
+      color: white;
+    }
+
+    button[type="reset"] {
+      border: 1px solid grey;
+      background-color: white;
+    }
+
+    .button {
+      text-align: center;
+    }
+
+    span {
+      color: grey;
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+    }
+
+    .delivery-info div {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>상품 주문서</h1>
+    <hr>
+    <form action="">
+      <div class="form">
+        <div class="delivery-fieldset">
+          <fieldset class="delivery-info">
+            <legend>배송 정보</legend>
+            <div class="input-product-name">
+              <label for="product-name">상품명</label>
+              <input type="text" id="product-name" name="product-name" value="프리미엄 블렌드 커피 500g" readonly>
+              <span>(변경 불가)</span>
+            </div>
+            <div class="input-name">
+              <label for="name">이름</label>
+              <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+            </div>
+            <div class="input-addr">
+              <label for="addr">주소</label>
+              <input type="text" id="addr" name="addr" required placeholder="주소를 입력하세요">
+              <span>* 필수 입력</span>
+            </div>
+            <div class="input-email">
+              <label for="email">이메일</label>
+              <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
+            </div>
+            <div class="input-tel">
+              <label for="tel">연락처</label>
+              <input type="tel" id="tel" name="tel" placeholder="010-1234-5678">
+            </div>
+            <div class="input-delivery-day">
+              <label for="delivery-day">배송일</label>
+              <input type="date" id="delivery-day" name="delivery-day">
+            </div>
+          </fieldset>
+        </div>
+        <div class="payment-fieldset">
+          <fieldset class="payment">
+            <legend>결제 방법</legend>
+            <input type="radio" id="card-payment" name="payment" value="card-payment" checked>
+            <label for="card-payment">카드 결제</label>
+            <input type="radio" id="banktransfer" name="payment" value="banktransfer">
+            <label for="banktransfer">계좌 이체</label>
+            <input type="radio" id="easy-payment" name="payment" value="easy-payment">
+            <label for="easy-payment">간편 결제</label>
+          </fieldset>
+        </div>
+        <div class="request-fieldset">
+          <fieldset class="request">
+            <legend>요청사항</legend>
+            <textarea name="request" id="request" placeholder="요청사항을 입력해주세요. (선택사항)" cols="70" rows="5"></textarea>
+          </fieldset>
+        </div>
+        <div class="button">
+          <button type="submit">주문하기</button>
+          <button type="reset">초기화</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
