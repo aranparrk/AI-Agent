@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 1. 그룹 선택자를 사용해서 th와 td에 공통으로 테두리(border: 1px solid #ccc)와 안쪽 여백(padding: 6px 10px)을 지정하세요. */
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 6px 10px;
+      }
+      /* 2. 자식 선택자(>) 를 사용해서 .panel의 바로 아래 자식인 p만 파란색(color: blue)과 굵게(font-weight: bold)로 지정하세요. (안쪽 div 안의 p는 영향받지 않아야 합니다) */
+      .panel > p {
+        color: blue;
+        font-weight: bold;
+      }
+      /* 3. 인접 형제 선택자(+) 를 사용해서 .panel > div 안에서, 첫 번째 p 바로 다음에 오는 p를 빨간색(color: red)으로 지정하세요. */
+      .panel > div > p + p {
+        color: red;
+      }
+      /* 4. 일반 형제 선택자(~) 를 사용해서 .panel > div 안에서, 첫 번째 p 뒤에 오는 모든 p(즉 "바이오 섹터 약세"와 "2차전지 보합" 둘 다)에 밑줄(text-decoration: underline)을 지정하세요. */
+      .panel > div > p ~ p {
+        text-decoration: underline;
+      }
+      /* 5. 가상 요소 선택자를 사용해서 h2 앞에는 "📈 ", 뒤에는 " 📉"가 붙도록 ::before, ::after를 지정하세요. */
+      h2::before {
+        content: "📈 ";
+      }
+      h2::after {
+        content: " 📉";
+      }
+    </style>
+  </head>
+  <body>
+    <h2>주간 추천 종목</h2>
+    <table>
+      <tr>
+        <th>종목명</th>
+        <th>등락률</th>
+      </tr>
+      <tr>
+        <td>삼성전자</td>
+        <td>+1.2%</td>
+      </tr>
+      <tr>
+        <td>SK하이닉스</td>
+        <td>-8.8%</td>
+      </tr>
+    </table>
+
+    <div class="panel">
+      <h3>오늘의 코멘트</h3>
+      <p>시장이 전반적으로 안정적입니다.</p>
+      <div>
+        <p>반도체 섹터 강세</p>
+        <p>바이오 섹터 약세</p>
+        <p>2차전지 보합</p>
+      </div>
+    </div>
+  </body>
+</html>
