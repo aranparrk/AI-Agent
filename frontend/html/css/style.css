@@ -1,0 +1,12 @@
+/* 태그 선택자 : 태그 이름으로 선택을 해서 스타일을 적용 */
+div {
+  /* 부모 먼저 */
+  width: 300px;
+  height: 200px;
+  background-color: royalblue;
+  color: white;
+}
+li {
+  /* 자식 재정의 */
+  color: orangered;
+}
