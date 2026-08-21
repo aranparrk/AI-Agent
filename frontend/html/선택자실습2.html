@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 링크 가상 클래스를 사용해서 방문하지 않은 링크(`a:link`)는 파란색, 방문한 링크(`a:visited`)는 보라색으로 지정하세요. */
+      a:link {
+        color: blue;
+      }
+      a:visited {
+        color: purple;
+      }
+
+      /* input:focus를 사용해서 이메일 입력창을 클릭(포커스)했을 때 배경색이 연노랑(lightyellow)이 되도록 지정하세요. */
+      input:focus {
+        background-color: lightyellow;
+      }
+
+      /* input:disabled를 사용해서 비활성화된 쿠폰 코드 입력창의 배경색을 회색(#ddd)으로 지정하세요. */
+      input:disabled {
+        background-color: #ddd;
+      }
+
+      /* input:checked + label을 사용해서 체크박스를 체크했을 때, 바로 옆 label("수강 안내에 동의합니다")의 글자색이 초록색이 되고 굵게 표시되도록 지정하세요. */
+      input:checked + label {
+        color: green;
+        font-weight: bold;
+      }
+
+      /* button:hover로 마우스를 올렸을 때 배경색이 진해지고, button:active로 클릭하는 순간 버튼 크기가 살짝 커지도록(transform: scale(1.05)) 지정하세요. transition도 함께 넣어 부드럽게 만들어보세요. */
+      button:hover {
+        background-color: aquamarine;
+      }
+      button:active {
+        transform: scale(1.05);
+        transition: all 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>강의 신청 폼</h2>
+
+    <a href="https://inflearn.com">인프런 바로가기</a>
+    <br /><br />
+
+    <label>
+      이메일
+      <input type="text" placeholder="이메일 입력" />
+    </label>
+
+    <br /><br />
+
+    <label>
+      쿠폰 코드 (미발급)
+      <input type="text" placeholder="쿠폰 코드" disabled />
+    </label>
+    <br /><br />
+
+    <input type="checkbox" id="agree" />
+    <label for="agree">수강 안내에 동의합니다</label>
+    <br /><br />
+
+    <button>신청하기</button>
+  </body>
+</html>

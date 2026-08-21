@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 가상 클래스 선택자 : 요소의 특정 상태를 기반으로 스타일 적용 */
+      /* 링크 가상 클래스 선택자 : a태그에서 발생할 수 있는 링크 상태를 이용해 선택 */
+      a:link {
+        color: orange;
+      }
+      a:visited {
+        color: green;
+      }
+
+      /* 동적 가상 클래스 선택자 : 사용자의 어떤 행동에 따라 동적으로 변하는 상태를 이용해 선택 */
+      button {
+        width: 150px;
+        height: 60px;
+        background-color: orange;
+        color: white;
+        border-radius: 10px;
+        font-size: 24px;
+      }
+      button:hover {
+        background-color: orangered;
+      }
+      button:active {
+        width: 200px;
+        transition: all 1s;
+      }
+      input[type="text"] {
+        width: 200px;
+        height: 40px;
+        border-radius: 10px;
+      }
+      input:focus {
+        background-color: skyblue;
+      }
+      input:disabled {
+        background-color: gray;
+      }
+      input:checked + label {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://naver.com">네이버</a>
+    <a href="https://google.com">구글</a>
+    <a href="https://nate.com">네이트</a>
+    <br />
+    <br />
+    <button>확인</button>
+    <br />
+    <br />
+    <label>입력 <input type="text" placeholder="이름 입력" disabled /></label>
+    <br /><br />
+    <p>좋아하는 과일을 체크하세요</p>
+    <input type="checkbox" id="strawberry" />
+    <label for="strawberry">딸기</label>
+  </body>
+</html>
