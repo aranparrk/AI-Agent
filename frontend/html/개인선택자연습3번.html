@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>형제 선택자 연습</title>
+
+    <style>
+      /* 1. .notice 바로 아래 자식인 h2의 글자색을 darkblue로 지정하세요. */
+      .notice > h2 {
+        color: darkblue;
+      }
+
+      /* 2. .group 내부에 있는 모든 strong의 글자색을 red로 지정하세요.
+         안쪽 div의 strong도 포함합니다. */
+      .group strong {
+        color: red;
+      }
+
+      /* 3. .group 바로 아래 자식인 p에만 배경색 #eee를 지정하세요.
+         안쪽 div의 p는 적용되면 안 됩니다. */
+      .group > p {
+        background-color: #eee;
+      }
+
+      /* 4. strong 바로 다음에 붙어 있는 형제 p만
+         글자를 굵게 지정하세요. */
+      strong + p {
+        font-weight: bold;
+      }
+
+      /* 5. strong 뒤에 있는 모든 형제 p를 기울이세요.
+         중간에 span이 있어도 뒤쪽 p를 선택해야 합니다. */
+      strong ~ p {
+        font-style: italic;
+      }
+
+      /* 6. strong 뒤에 있는 모든 형제 요소를 밑줄 처리하세요.
+         p뿐만 아니라 span도 선택되어야 합니다. */
+      strong ~ * {
+        text-decoration: underline;
+      }
+
+      /* 7. 같은 태그 종류 중 첫 번째인 .group에
+         테두리 2px solid orange를 지정하세요. */
+      .group:first-of-type {
+        border: 2px solid orange;
+      }
+
+      /* 8. 마지막 .group에 마우스를 올렸을 때
+         배경색이 lightcyan으로 바뀌도록 지정하세요. */
+
+      .group:last-of-type:hover {
+        background-color: lightcyan;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="notice">
+      <h2>공지사항</h2>
+
+      <div class="group">
+        <h3>수업 공지</h3>
+        <strong>중요</strong>
+        <p>금요일까지 과제를 제출하세요.</p>
+        <span>제출 기한 확인</span>
+        <p>파일명도 확인하세요.</p>
+
+        <div>
+          <p>추가 안내입니다.</p>
+          <strong>참고</strong>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>시험 공지</h3>
+        <p>다음 주에 시험이 있습니다.</p>
+        <strong>필독</strong>
+        <span>시험 범위 확인</span>
+        <p>선택자까지 복습하세요.</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -30,12 +30,22 @@
       }
 
       /* button:hover로 마우스를 올렸을 때 배경색이 진해지고, button:active로 클릭하는 순간 버튼 크기가 살짝 커지도록(transform: scale(1.05)) 지정하세요. transition도 함께 넣어 부드럽게 만들어보세요. */
+      button {
+        width: 150px;
+        height: 50px;
+        background-color: orange;
+        border: none;
+        border-radius: 18px;
+        font-size: 18px;
+        transition: all 0.3s;
+      }
       button:hover {
-        background-color: aquamarine;
+        background-color: darkorange;
       }
       button:active {
-        transform: scale(1.05);
-        transition: all 1s;
+        /* transform: scale(1.05); */
+        transform: translate(2px, 2px);
+        background-color: orangered;
       }
     </style>
   </head>

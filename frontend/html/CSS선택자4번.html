@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 구조적 가상 클래스 선택자 : 요소의 부모, 자식, 형제, 인접 요소 등을 기준으로 스타일을 적용 */
+      li:first-child {
+        color: red;
+      }
+      li:last-child {
+        color: yellow;
+      }
+      li:nth-child(2n) {
+        color: royalblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>걸 그룹 인기 순위</h1>
+    <ul>
+      <li>리센느</li>
+      <li>아이브</li>
+      <li>오마이걸</li>
+      <li>블랙핑크</li>
+      <li>트와이스</li>
+    </ul>
+  </body>
+</html>

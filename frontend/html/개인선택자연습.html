@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 연습</title>
+
+    <style>
+      /* 1. .news 바로 아래 자식인 h2만 글자색을 blue로 지정하세요. */
+      .news > h2 {
+        color: blue;
+      }
+
+      /* 2. 모든 .article 내부에 있는 h3의 글자 크기를 24px로 지정하세요. */
+      .article h3 {
+        font-size: 24px;
+      }
+
+      /* 3. .article의 바로 아래 자식인 p만 글자색을 gray로 지정하세요.
+   안쪽 div에 들어 있는 '기자 메모입니다.'는 회색이 되면 안 됩니다. */
+      .article > p {
+        color: gray;
+      }
+
+      /* 4. 같은 태그 종류 중 첫 번째인 .article의 배경색을 lightyellow로 지정하세요. */
+      .news .article:first-of-type {
+        background-color: lightyellow;
+      }
+
+      /* 5. 첫 번째 .article 바로 다음에 오는 .article에
+   테두리 1px solid red를 지정하세요. */
+      .news .article + .article {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="news">
+      <h2>오늘의 뉴스</h2>
+
+      <div class="article">
+        <h3>첫 번째 기사</h3>
+        <p>첫 번째 기사 내용입니다.</p>
+        <div>
+          <p>기자 메모입니다.</p>
+        </div>
+      </div>
+
+      <div class="article">
+        <h3>두 번째 기사</h3>
+        <p>두 번째 기사 내용입니다.</p>
+      </div>
+    </div>
+  </body>
+</html>

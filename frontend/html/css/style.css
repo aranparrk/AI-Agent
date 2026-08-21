@@ -1,12 +1,60 @@
-/* 태그 선택자 : 태그 이름으로 선택을 해서 스타일을 적용 */
-div {
-  /* 부모 먼저 */
-  width: 300px;
-  height: 200px;
-  background-color: royalblue;
-  color: white;
+/* id가 main-title인 요소의 글자색을 파랑으로 지정하세요. */
+#main-title {
+  color: blue;
 }
-li {
-  /* 자식 재정의 */
-  color: orangered;
+
+/* class가 tagline인 문장을 기울이고, 회색 글자색으로 지정하세요. */
+.tagline {
+  color: gray;
+  font-style: italic;
+}
+
+/* class가 highlight인 단락에 배경색 연노랑(#fff9c4), 테두리 추가** */
+.highlight {
+  background-color: #fff9c4;
+  border: 1px solid black;
+}
+
+/* 모든 section 제목(h2)의 글꼴 크기를 24px로 지정하고, 밑줄을 추가하세요. */
+section h2 {
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+/* class가 skill-item인 리스트 항목을 배경색 연회색, 가운데 정렬하세요. */
+.skill-item {
+  background-color: lightgray;
+  text-align: center;
+}
+
+/* class가 project인 div 내부의 h3 요소에 글자색 초록을 지정하세요. */
+.project h3 {
+  color: green;
+}
+
+/* class가 project인 요소 바로 다음 p에만 글자 색상 보라색 적용하세요. */
+.project > p {
+  color: purple;
+}
+
+/* footer 안의 p 태그에 글자 크기 14px, 가운데 정렬을 적용하세요. */
+footer p {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 첫 번째 .project div의 배경색을 연한 하늘색(#e0f7fa)으로 지정하세요. */
+.projects .project:first-of-type {
+  background-color: #e0f7fa;
+}
+
+/* 마지막 .project div 안의 h3을 굵게, 글자 크기 40px으로 지정하세요. */
+.projects .project:last-child h3 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+/* ul 태그의 스타일 지우기 */
+ul {
+  list-style: none;
 }
