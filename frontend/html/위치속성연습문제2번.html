@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        display: flex;
+        gap: 30px;
+      }
+      .box {
+        background-color: royalblue;
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        position: relative;
+      }
+      .badge {
+        background-color: red;
+        width: 20px;
+        height: 20px;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 100%;
+        position: absolute;
+        right: -5px;
+        top: -5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <div class="badge badge1">1</div>
+      </div>
+      <div class="box">
+        <div class="badge badge2">2</div>
+      </div>
+      <div class="box">
+        <div class="badge badge3">3</div>
+      </div>
+    </div>
+  </body>
+</html>

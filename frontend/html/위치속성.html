@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 600px;
+        height: 4000px;
+        background-color: lightgray;
+        position: relative;
+        margin: 0;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+      }
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+        /* relative : 원래 있어야 할 위치(static)에서 위치 속성 만큼 이동 */
+        /* absolute : 부모위치 기준으로 절대값 만큼 이동 */
+        position: absolute; /* 상대적인 위치만큼 이동 */
+        left: 100px;
+        top: 20px;
+      }
+      .blue {
+        width: 400px;
+        height: 60px;
+        background-color: blue;
+        position: sticky;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+      }
+      .purple {
+        position: relative;
+        background-color: purple;
+      }
+      .green:hover {
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box red"></div>
+      <div class="box green"></div>
+      <div class="box blue"></div>
+      <div class="box purple"></div>
+    </div>
+  </body>
+</html>
