@@ -12,28 +12,45 @@
         /* font-weight: lighter; */
         font-variant: small-caps;
         /* color: royalblue; */
-        color: rgb(255, 100, 100);
+        color: royalblue;
       }
       div {
+        display: block; /* inline을 주면 공간이 없기 때문에 정렬이 안 된다 */
         font-size: 20px;
         font-weight: normal;
+        /* text-align: center; */
       }
       ul {
+        text-decoration: none;
         font-weight: 500; /* 부모 대비 얇게 된다 */
         font-style: oblique; /* normal, italic, oblique */
+        text-align: left;
+      }
+      p {
+        letter-spacing: normal; /* 자간 */
+        line-height: 3; /* 줄간, 폰트 크기에 따라 간격이 따라 간다 */
+      }
+      .title {
+        text-shadow: 2px 2px 2px red; /* x축, y축, 번짐정도, 색상 */
+        font-size: 34px;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <p>프론트앤드는 HTML, CSS, JavaScript, 리액트를 배웁니다.</p>
     <div>
-      오늘의 영화
+      <p class="title">오늘의 영화</p>
       <ul>
         <li>스파이더맨</li>
         <li>오디세이</li>
         <li>경주기행</li>
         <li>오크 스트리트의 마지막 말</li>
       </ul>
+      <p>
+        행복의 한 쪽 문이 닫히면 다른 쪽 문이 열린다. 그러나 흔히 우리는 닫혀진
+        문을 오랫동안 보기 때문에 우리를 위해 열려 있는 문을 보지 못한다.
+      </p>
     </div>
   </body>
 </html>
