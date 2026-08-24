@@ -73,6 +73,11 @@
         margin-bottom: 8px;
       }
 
+      .list a {
+        text-decoration: none;
+        color: #333333;
+      }
+
       .content {
         display: flex;
         flex-direction: column;
@@ -82,9 +87,9 @@
       .box {
         width: 500px;
         padding: 20px;
-
         border: 1px solid #e8e8e8;
         border-radius: 5px;
+        scroll-margin-top: 70px;
       }
 
       .box h4 {
@@ -108,17 +113,17 @@
           <strong>📋 목차</strong>
 
           <ul>
-            <li>01. static</li>
-            <li>02. relative</li>
-            <li>03. absolute</li>
-            <li>04. fixed</li>
-            <li>05. sticky</li>
-            <li>06. z-index</li>
+            <li><a href="#static">01. static</a></li>
+            <li><a href="#relative">02. relative</a></li>
+            <li><a href="#absolute">03. absolute</a></li>
+            <li><a href="#fixed">04. fixed</a></li>
+            <li><a href="#sticky">05. sticky</a></li>
+            <li><a href="#z-index">06. z-index</a></li>
           </ul>
         </div>
 
         <div class="content">
-          <div class="box box1">
+          <div class="box box1" id="static">
             <h4>01. static</h4>
             <p>
               기본값입니다. 문서의 일반 흐름에 따라 위에서 아래로 배치됩니다.
@@ -126,7 +131,7 @@
             </p>
           </div>
 
-          <div class="box box2">
+          <div class="box box2" id="relative">
             <h4>02. relative</h4>
             <p>
               자신의 원래 위치를 기준으로 이동합니다. 이동해도 원래 자리는
@@ -135,7 +140,7 @@
             </p>
           </div>
 
-          <div class="box box3">
+          <div class="box box3" id="absolute">
             <h4>03. absolute</h4>
             <p>
               position이 static이 아닌 가장 가까운 부모 요소를 기준으로 위치를
@@ -144,7 +149,7 @@
             </p>
           </div>
 
-          <div class="box box4">
+          <div class="box box4" id="fixed">
             <h4>04. fixed</h4>
             <p>
               뷰포트(브라우저 화면)를 기준으로 고정됩니다. 이 페이지 상단의
@@ -153,7 +158,7 @@
             </p>
           </div>
 
-          <div class="box box5">
+          <div class="box box5" id="sticky">
             <h4>05. sticky</h4>
             <p>
               평소에는 일반 흐름을 따르다가, 스크롤이 지정한 위치에 도달하면 그
@@ -162,7 +167,7 @@
             </p>
           </div>
 
-          <div class="box box6">
+          <div class="box box6" id="z-index">
             <h4>06. z-index</h4>
             <p>
               요소들이 겹칠 때 어떤 요소가 앞에 올지를 결정합니다. 값이 클수록
