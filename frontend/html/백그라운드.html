@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- container는 500px로 만들고 배경을 lightgray로 지정 -->
+    <!-- 3개의 박스를 수평으로 배치하는데 각 박스 사이는 10px씩 띄우기 -->
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 500px;
+        height: 1000px;
+        background-color: lightgray;
+        padding-left: 5px;
+      }
+      .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin: 10px 5px;
+      }
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .img {
+        width: 320px;
+        height: 220px;
+        background-image: url("./images/coffee.jpg");
+        background-repeat: no-repeat;
+        border: 1px solid black;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="box red"></p>
+      <p class="box green"></p>
+      <p class="box blue"></p>
+    </div>
+    <p class="img"></p>
+  </body>
+</html>
