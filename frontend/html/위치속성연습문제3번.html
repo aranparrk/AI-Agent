@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>CSS Position 학습</title>
 
     <style>
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -16,13 +21,14 @@
       }
 
       .container {
-        position: relative;
+        width: 100%;
       }
 
       .nav {
         position: fixed;
         top: 0;
         left: 0;
+
         width: 100%;
         height: 50px;
 
@@ -32,18 +38,22 @@
         display: flex;
         align-items: center;
 
+        padding: 0 20px;
+        font-weight: bold;
+
         z-index: 10;
       }
 
       .main {
-        width: 800px;
+        width: 100%;
+        max-width: 800px;
         min-height: 2000px;
+
         margin: 0 auto;
+        padding: 100px 20px 0;
 
         display: flex;
         gap: 20px;
-
-        padding-top: 100px;
       }
 
       .list {
@@ -52,8 +62,10 @@
 
         width: 150px;
         height: 230px;
+
+        flex-shrink: 0;
+
         padding: 15px;
-        box-sizing: border-box;
 
         background-color: #f0f0f0;
         border-radius: 5px;
@@ -79,16 +91,22 @@
       }
 
       .content {
+        flex: 1;
+        min-width: 0;
+
         display: flex;
         flex-direction: column;
         gap: 20px;
       }
 
       .box {
-        width: 500px;
+        width: 100%;
+
         padding: 20px;
+
         border: 1px solid #e8e8e8;
         border-radius: 5px;
+
         scroll-margin-top: 70px;
       }
 
@@ -100,6 +118,7 @@
       .box p {
         padding-top: 8px;
         font-size: 14px;
+        line-height: 1.6;
       }
     </style>
   </head>
@@ -123,7 +142,7 @@
         </div>
 
         <div class="content">
-          <div class="box box1" id="static">
+          <div class="box" id="static">
             <h4>01. static</h4>
             <p>
               기본값입니다. 문서의 일반 흐름에 따라 위에서 아래로 배치됩니다.
@@ -131,7 +150,7 @@
             </p>
           </div>
 
-          <div class="box box2" id="relative">
+          <div class="box" id="relative">
             <h4>02. relative</h4>
             <p>
               자신의 원래 위치를 기준으로 이동합니다. 이동해도 원래 자리는
@@ -140,16 +159,15 @@
             </p>
           </div>
 
-          <div class="box box3" id="absolute">
+          <div class="box" id="absolute">
             <h4>03. absolute</h4>
             <p>
               position이 static이 아닌 가장 가까운 부모 요소를 기준으로 위치를
-              잡습니다. 문서 흐름에서 빠져나옵니다. 부모에 relative가 없으면
-              html 전체 기준으로 위치가 잡힙니다.
+              잡습니다. 문서 흐름에서 빠져나옵니다.
             </p>
           </div>
 
-          <div class="box box4" id="fixed">
+          <div class="box" id="fixed">
             <h4>04. fixed</h4>
             <p>
               뷰포트(브라우저 화면)를 기준으로 고정됩니다. 이 페이지 상단의
@@ -158,16 +176,15 @@
             </p>
           </div>
 
-          <div class="box box5" id="sticky">
+          <div class="box" id="sticky">
             <h4>05. sticky</h4>
             <p>
               평소에는 일반 흐름을 따르다가, 스크롤이 지정한 위치에 도달하면 그
-              자리에 고정됩니다. 왼쪽 목차가 sticky입니다. 스크롤을 내리면서
-              확인해 보세요!
+              자리에 고정됩니다. 왼쪽 목차가 sticky입니다.
             </p>
           </div>
 
-          <div class="box box6" id="z-index">
+          <div class="box" id="z-index">
             <h4>06. z-index</h4>
             <p>
               요소들이 겹칠 때 어떤 요소가 앞에 올지를 결정합니다. 값이 클수록

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+    아래 3개의 박스를 만들어 보세요.
+    - 모든 박스는 position: absolute, top: 50px, left: 50px로 겹치게 배치
+    - .red는 background-color: red, z-index: 1
+    - .green는 background-color: green, z-index: 2
+    - .blue는 background-color: blue, z-index: 3
+    - 크기는 전부 150px × 150px
+    - 색상 순서대로 위로 올라가도록 설정
+  -->
+    <style>
+      .box {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 150px;
+        height: 150px;
+      }
+      .red {
+        background-color: red;
+        z-index: 1;
+      }
+      .green {
+        background-color: green;
+        z-index: 2;
+      }
+      .blue {
+        background-color: blue;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box red"></div>
+    <div class="box green"></div>
+    <div class="box blue"></div>
+  </body>
+</html>

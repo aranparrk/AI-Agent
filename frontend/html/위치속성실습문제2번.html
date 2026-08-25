@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+    아래 조건을 만족하는 박스를 만들어 보세요.
+    - .container 요소는 너비 300px, 높이 200px, position: relative 설정
+    - 그 안의 .box 요소는 너비 100px, 높이 100px, 배경색 green
+    - .box는 부모 기준으로 오른쪽 위에 위치하도록 absolute 속성과 top, right 사용
+    -->
+    <style>
+      .container {
+        width: 300px;
+        height: 200px;
+        position: relative;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+  </body>
+</html>
