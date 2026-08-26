@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 1000px;
+      }
+      .title {
+        text-align: center;
+      }
+      .product {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .product img {
+        width: 300px;
+        height: 200px;
+      }
+      .product-item {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-info {
+        position: absolute;
+        top: -200px;
+        left: 0;
+        width: 300px;
+        height: 200px;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: 0.8s 0.2s all ease-in-out;
+        color: white;
+      }
+
+      .product-item:hover .product-info {
+        transform: translateY(200px);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title">신상품 목록</h2>
+      <div class="product">
+        <div class="product-item">
+          <img src="./images/prod1.jpg" alt="" />
+          <div class="product-info">
+            <h3>상품 1</h3>
+            <p>상품1 설명 텍스트</p>
+            <p>가격 : 12,345원</p>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <img src="./images/prod2.jpg" alt="" />
+          <div class="product-info">
+            <h3>상품 2</h3>
+            <p>상품2 설명 텍스트</p>
+            <p>가격 : 12,345원</p>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <img src="./images/prod3.jpg" alt="" />
+          <div class="product-info">
+            <h3>상품 3</h3>
+            <p>상품3 설명 텍스트</p>
+            <p>가격 : 12,345원</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
