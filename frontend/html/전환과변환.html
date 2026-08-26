@@ -5,19 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .box {
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        transition: all 1s 0.3s; /* all : 모든 효과를 적용하겠다 */
+      .container {
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
       }
-      .box:hover {
-        background-color: blue;
-        width: 200px;
+      .bar {
+        width: 100px;
+        height: 30px;
+        background-color: orangered;
+        transition: all 2s;
+        margin-bottom: 10px;
+      }
+      .container:hover .bar {
+        width: 280px;
+      }
+      .bar:nth-child(1) {
+        transition-timing-function: linear;
+      }
+      .bar:nth-child(2) {
+        transition-timing-function: ease;
+      }
+      .bar:nth-child(3) {
+        transition-timing-function: ease-in;
+      }
+      .bar:nth-child(4) {
+        transition-timing-function: ease-out;
+      }
+      .bar:nth-child(5) {
+        transition-timing-function: ease-in-out;
       }
     </style>
   </head>
   <body>
-    <div class="box red"></div>
+    <div class="container">
+      <div class="bar">linear</div>
+      <div class="bar">ease</div>
+      <div class="bar">ease-in</div>
+      <div class="bar">ease-out</div>
+      <div class="bar">ease-in-out</div>
+    </div>
   </body>
 </html>
