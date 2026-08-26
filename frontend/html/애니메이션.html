@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        animation-name: bgChange;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+      @keyframes bgChange {
+        0% {
+          background-color: red;
+          transform: rotate(30deg);
+        }
+        15% {
+          background-color: orange;
+          transform: rotate(60deg);
+        }
+        30% {
+          background-color: yellow;
+          transform: rotate(90deg);
+        }
+        45% {
+          background-color: green;
+          transform: rotate(120deg);
+        }
+        60% {
+          background-color: blue;
+          transform: rotate(150deg);
+        }
+        75% {
+          background-color: navy;
+          transform: rotate(180deg);
+        }
+        90% {
+          background-color: purple;
+          transform: rotate(30deg);
+        }
+        100% {
+          background-color: red;
+          transform: rotate(30deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
