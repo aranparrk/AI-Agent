@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
     <title>Document</title>
     <style>
       /* flex : 1차원 방향(가로 또는 세로)으로 레이아웃을 구성할 때 사용 */
@@ -30,15 +34,15 @@
         flex-direction: column;
         min-height: 100vh;
       }
-
       header {
         display: flex;
         width: 100%; /* 부모의 크기 100% */
         height: 60px;
         background-color: lightpink;
         justify-content: space-between; /* 양끝은 붙이고 사이는 균등하게 배치 */
+        align-items: center;
+        padding: 0 6px;
       }
-
       main {
         flex-grow: 1; /* 남는 공간을 가져 감 */
         display: flex;
@@ -52,18 +56,57 @@
         width: 100%;
         color: white;
         font-size: 14px;
-        background-color: lightgreen;
+        background-color: green;
+      }
+      .logo {
+        width: 50px;
+        height: 50px;
+        background-color: orange;
+        border-radius: 6px;
+      }
+      nav {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+      nav a {
+        text-decoration: none;
+        color: #006241;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .hamburger {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        background-color: royalblue;
+        border-radius: 6px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        color: #ccc;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <header>
-        <div>ㅎㅇ</div>
-        <div>ㅂㅇ</div>
-        <div>ㅇㅇ</div>
-        <div>ㅈㅅ</div>
-        <div>ㅅㄱ</div>
+        <div class="logo"></div>
+        <nav>
+          <a href="#">정치</a>
+          <a href="#">경제</a>
+          <a href="#">사회</a>
+          <a href="#">문화</a>
+        </nav>
+        <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
       </header>
       <main>
         <div>text</div>
@@ -71,7 +114,9 @@
         <div>text</div>
         <div>text</div>
       </main>
-      <footer></footer>
+      <footer>
+        <p>2026년 My Flex App</p>
+      </footer>
     </div>
   </body>
 </html>
