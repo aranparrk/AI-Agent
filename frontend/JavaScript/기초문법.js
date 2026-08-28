@@ -20,9 +20,29 @@ const __class3 = 3; // _(언더바) 사용 가능, 특수문자는 _(언더바),
 const $class = 4;
 // const -class = 5; 안 됨
 
-let age = 23;
+// 이름, 나이, 주소, 성별 출력하기
+// 문자와 문자열을 구분하지 않음 -> 문자열
+// 데이터 타입 지정하지 않음
+let name = '';      // 이름을 입력 받는 변수 생성, 초기값은 비어있음
+let age = 0;        // 숫자 타입의 변수 생성
+let addr = '';      // 주소
+let gender = true;  // 성별 남성이면 true, 여성이면 false
+
+name = '곰돌이';
 age = 24;
+addr = '충남 천안시';
+gender = false;
 
-console.log(score);
+console.log('===================================================');
+console.log(`당신의 이름은 ${name}입니다.`);
+console.log(`나이는 ${age}살 이고, 주소는 ${addr}입니다.`)
+console.log(`성별은 ${gender === true ? '남성' : '여성'}입니다.`)
 
-var score = 99;
+// 문자열 : 자바스크립트는 유니코드 문자체계를 사용, "", '', ``
+
+console.log('===================================================');
+console.log("안녕하세요. 저는 " + name + "입니다.")
+console.log('안녕하세요. 저는 ' + name + '입니다.')
+console.log(`안녕하세요. 저는 ${name}입니다.`);
+console.log('===================================================');
+
