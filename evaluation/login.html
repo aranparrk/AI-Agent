@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 500px;
+        height: 500px;
+        background-color: rgb(1, 75, 56);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* 로그인 폼 */
+      .login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Welcome Back */
+      .login-title {
+        color: white;
+        font-size: 40px;
+        text-align: center;
+        margin: 10px 0 50px;
+      }
+      /* 회원정보 입력창 */
+      input {
+        background-color: rgb(1, 75, 56);
+        border: 1px solid gray;
+        padding: 5px;
+        width: 400px;
+        font-size: 18px;
+        margin: 12px;
+        color: white;
+      }
+      /* 로그인 버튼 */
+      button {
+        width: 400px;
+        background-color: rgb(10, 175, 120);
+        color: white;
+        border: none;
+        font-size: 28px;
+        font-weight: bold;
+        margin: 30px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      /* 폼 요소 폰트 */
+      input,
+      button {
+        font-family: "Roboto", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 로그인 영역 -->
+      <form action="./main.html" class="login" target="_blank">
+        <p class="login-title">Welcome Back!</p>
+        <!-- 이메일 입력 -->
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address *"
+          required
+        />
+        <!-- 비밀번호 입력 -->
+        <input type="password" name="pwd" placeholder="Password *" required />
+        <button type="submit">LOG IN</button>
+      </form>
+    </div>
+  </body>
+</html>
