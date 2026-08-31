@@ -89,7 +89,7 @@ SELECT * FROM member WHERE mem_number = 4;
 SELECT * FROM member WHERE mem_number >= 4; 
 
 -- 전화번호가 02로 시작하는 회원의 이름, 전화번호, 키와 데뷔일자 조회
-SELECT mem_name AS 이름, CONCAT(phone1, phone2) AS 전화번호, height AS 키, debut_date AS 데뷔일자 FROM member WHERE phone1 = '02'
+SELECT mem_name AS 이름, CONCAT(phone1, phone2) AS 전화번호, height AS 키, debut_date AS 데뷔일자 FROM member WHERE phone1 = '02';
 
 -- 멤버의 키가 165 이상인 그룹 조회
 SELECT * FROM member WHERE height >= 165;
@@ -111,10 +111,19 @@ SELECT * FROM buy WHERE group_name = '디지털';
 SELECT * FROM member WHERE addr != '서울';
 
 -- 4. 상품 이름에 '지갑'이 포함된 구매 내역
-SELECT * FROM buy WHERE prod_name = '지갑';
+SELECT * FROM buy WHERE prod_name LIKE '%지갑%';
 
 -- 5. 블랙핑크가 구매한 모든 상품 이름과 금액
-SELECT b.prod_name, b.price FROM member m
+SELECT b.prod_name, (b.price * b.amount) AS total_price FROM member m
 JOIN buy b
 ON m.mem_id = b.mem_id
 WHERE m.mem_name = '블랙핑크';
+
+-- 6. 그룹별 평균 구매 금액
+SELECT group_name, AVG(price * amount) AS 평균금액 FROM buy
+GROUP BY group_name;
+
+-- 7. 키가 가장 작은 멤버
+SELECT * FROM member
+ORDER BY height
+LIMIT 1;
