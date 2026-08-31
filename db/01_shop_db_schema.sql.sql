@@ -1,52 +1,68 @@
-CREATE DATABASE shop_db;
+CREATE shop_db;
 
 USE shop_db;
 
-CREATE TABLE member (
-	member_id CHAR(8) not null primary key,
-	member_name CHAR(5) not null,
-	member_addr CHAR(20)
+CREATE TABLE member -- 회원 테이블
+(
+  mem_id      CHAR(8) NOT NULL PRIMARY KEY, 	-- 회원 아이디(PK)
+  mem_name    VARCHAR(10) NOT NULL,         	-- 이름
+  mem_number  INT NOT NULL,                 	-- 인원수
+  addr        CHAR(2) NOT NULL,             	-- 지역(예: 서울, 경기)
+  phone1      CHAR(3),                      	-- 국번(02, 031 등)
+  phone2      CHAR(8),                      	-- 전화번호 뒷자리
+  height      SMALLINT,                     	-- 평균 키
+  debut_date  DATE                          	-- 데뷔 일자
 );
 
-CREATE TABLE product (
-	product_name CHAR(4) NOT NULL PRIMARY KEY,
-	cost INT NOT NULL,
-	make_date DATE,
-	company CHAR(5),
-	amount INT NOT NULL	
+
+CREATE TABLE buy -- 구매 테이블
+(
+  num         INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 순번(PK)
+  mem_id      CHAR(8) NOT NULL,                        	-- 회원 아이디(FK)
+  prod_name   CHAR(6) NOT NULL,                        	-- 제품 이름
+  group_name  CHAR(4),                                 		-- 분류
+  price       INT NOT NULL,                            	-- 가격
+  amount      SMALLINT NOT NULL,                       	-- 수량
+  FOREIGN KEY (mem_id) REFERENCES member(mem_id)       	-- 회원 테이블 참조
 );
 
--- 아이브(IVE) 멤버
-INSERT INTO member (member_id, member_name, member_addr) 
-VALUES ('M003', '장원영', '서울 성동구'),
-		('M004', '안유진', '서울 서초구'),
-		('M005', '레이', '서울 용산구'),
-		('M006', '리즈', '경기 성남시'),
-		('M007', '가을', '서울 종로구'),
-		('M008', '이서', '경기 고양시');
-		
 
--- 르세라핌(LE SSERAFIM) 멤버 
-INSERT INTO member (member_id, member_name, member_addr)
-VALUES ('M009', '사쿠라', '서울 강동구'),
-		('M010', '채원', '서울 송파구'),
-		('M011', '윤진', '경기 수원시'),
-		('M012', '카즈하', '서울 마포구'),
-		('M013', '은채', '경기 부천시');
+INSERT INTO member
+VALUES
+('TWC', '트와이스', 9, '서울', '02', '11111111', 167, '2015.10.19'),
+('WMN', '여자친구', 6, '경기', '031', '33333333', 166, '2015.01.15'),
+('OMY', '오마이걸', 7, '서울', NULL, NULL, 160, '2015.04.21'),
+('GRL', '소녀시대', 8, '서울', '02', '44444444', 168, '2007.08.02'),
+('ITZ', '잇지', 5, '경남', NULL, NULL, 167, '2019.02.12'),
+('RED', '레드벨벳', 4, '경북', '054', '55555555', 161, '2014.08.01'),
+('APN', '에이핑크', 6, '경기', '031', '77777777', 164, '2011.02.10'),
+('SPC', '우주소녀', 13, '서울', '02', '88888888', 162, '2016.02.25'),
+('ESP', '에스파', 4, '전남', '061', '99999999', 165, '2019.06.19'),
+('BLK', '블랙핑크', 4, '경남', '055', '22222222', 163, '2016.08.08');
 
--- 상품
-INSERT INTO product (product_name, cost, make_date, company, amount)
-VALUES ('아이폰', 1550000, '2025-09-20', '애플', 30),
-		('갤럭시', 1350000, '2025-03-14', '삼성', 45),
-		('아이패드', 899000, '2025-05-01', '애플', 25),
-		('닌텐도', 350000, '2024-10-08', '닌텐', 60),
-		('플스5', 678000, '2024-11-15', '소니', 20),
-		('에어팟', 359000, '2025-02-10', '애플', 100),
-		('노트북', 1450000, '2025-01-25', 'LG전', 15),
-		('모니터', 320000, '2025-03-30', '삼성', 40),
-		('스피커', 89000, '2025-04-18', '보스', 70),
-		('충전기', 25000, '2025-05-05', '애플', 200);
+INSERT INTO buy
+VALUES
+(NULL, 'BLK', '지갑', NULL, 30, 2),
+(NULL, 'BLK', '맥북프로', '디지털', 1000, 1),
+(NULL, 'APN', '아이폰', '디지털', 200, 1),
+(NULL, 'BLK', '청바지', '패션', 50, 3),
+(NULL, 'GRL', 'SQL', '서적', 15, 5),
+(NULL, 'APN', 'JAVA', '서적', 15, 2),
+(NULL, 'GRL', 'Vue', '서적', 15, 2),
+(NULL, 'APN', '청바지', '패션', 50, 1),
+(NULL, 'APN', '리액트', '서적', 15, 1);
+
+-- 테이블의 모든 데이터 조회
 
 SELECT * FROM member;
 
-SELECT * FROM product;
+SELECT * FROM buy;
+
+-- 특정 열만 조회 : mem_name, addr
+SELECT mem_name, addr FROM member;
+
+-- 이름, 주소, 전화번호, 키, 데뷔일자
+SELECT mem_name, addr, CONCAT(phone1, phone2), height, debut_date FROM member;
+
+-- 
+SELECT mem_id, prod_name FROM buy;
