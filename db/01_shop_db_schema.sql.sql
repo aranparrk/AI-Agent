@@ -78,3 +78,43 @@ SELECT mem_id AS 아이디, mem_name AS 이름, addr AS 주소, height AS 키 FR
 SELECT * FROM member
 ORDER BY height DESC
 LIMIT 5;
+
+-- 이름이 블랙핑크인 것만 출력하기
+SELECT * FROM member WHERE mem_name = '블랙핑크';
+
+-- 멤버 회원수가 4명인 경우 조회
+SELECT * FROM member WHERE mem_number = 4;
+
+-- 멤버 수가 4명 이상인 경우 조회
+SELECT * FROM member WHERE mem_number >= 4; 
+
+-- 전화번호가 02로 시작하는 회원의 이름, 전화번호, 키와 데뷔일자 조회
+SELECT mem_name AS 이름, CONCAT(phone1, phone2) AS 전화번호, height AS 키, debut_date AS 데뷔일자 FROM member WHERE phone1 = '02'
+
+-- 멤버의 키가 165 이상인 그룹 조회
+SELECT * FROM member WHERE height >= 165;
+
+-- 전화번호 붙여서 출력
+SELECT CONCAT(phone1, phone2) FROM member;
+
+----------------------------------------------------------------
+-- 실습문제
+----------------------------------------------------------------
+
+-- 1. 평균 키가 165이상인 멤버 이름과 키
+SELECT mem_name, height FROM member WHERE height >= 165; 
+
+-- 2. '디지털'분류의 상품을 구매한 기록
+SELECT * FROM buy WHERE group_name = '디지털';
+
+-- 3. 지역이 '서울'이 아닌 멤버 목록
+SELECT * FROM member WHERE addr != '서울';
+
+-- 4. 상품 이름에 '지갑'이 포함된 구매 내역
+SELECT * FROM buy WHERE prod_name = '지갑';
+
+-- 5. 블랙핑크가 구매한 모든 상품 이름과 금액
+SELECT b.prod_name, b.price FROM member m
+JOIN buy b
+ON m.mem_id = b.mem_id
+WHERE m.mem_name = '블랙핑크';
