@@ -111,3 +111,27 @@ ORDER BY mem_name;
 SELECT mem_id, SUM(amount) FROM buy
 GROUP BY mem_id
 HAVING SUM(amount) >= 2;
+
+-- 회원 테이블에서 전체 회원 수와, addr(주소)가 NULL이 아닌 회원 수를 각각 구하세요.
+SELECT COUNT(*) AS `전체 회원 수`, COUNT(addr) AS `주소가 있는 회원수` FROM member;
+
+-- 구매 테이블에서 상품별 총 판매 금액을 구하고, 금액이 큰 순서로 상위 3개 상품만 출력하세요.
+SELECT prod_name, SUM(price * amount) FROM buy
+GROUP BY prod_name
+ORDER BY SUM(price * amount) DESC
+LIMIT 3;
+
+-- 회원 테이블에서 키(height)가 4번째로 큰 회원부터 2명을 출력하세요.
+SELECT * FROM member
+ORDER BY height DESC
+LIMIT 3, 2;
+
+-- 구매 테이블에서 회원별로 서로 다른 상품을 몇 종류 구매했는지 구하세요.
+SELECT mem_id, COUNT(DISTINCT prod_name) FROM buy
+GROUP BY mem_id;
+
+-- 구매 테이블에서 상품별 평균 구매 금액(price)를 구하고, 그 평균이 50원을 초과
+SELECT prod_name, AVG(price) AS `평균 가격` FROM buy
+GROUP BY prod_name
+HAVING AVG(price) > 50;
+
