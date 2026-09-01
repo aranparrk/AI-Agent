@@ -50,3 +50,25 @@ SELECT mem_name, height
 FROM member
 ORDER BY height
 LIMIT 1;
+
+-- 전체 회원의 총 구매 개수 
+SELECT SUM(amount) FROM buy;
+
+-- 회원별 총 구매 개수
+SELECT mem_id, SUM(amount) FROM buy
+GROUP BY mem_id;
+
+-- 회원별 총 구매 금액
+SELECT mem_id AS `회원 아이디`, SUM(price * amount) AS `총 구매 금액` FROM buy
+GROUP BY mem_id;
+
+-- 전체 평균 구매 개수
+SELECT AVG(amount) AS `평균 구매 개수` FROM buy;
+
+-- 회원별 평균 구매 개수
+SELECT mem_id AS `회원 아이디`, AVG(amount) AS `평균 구매 개수` FROM buy
+GROUP BY mem_id;
+
+-- GROUP BY 다중 열 지정하기
+SELECT mem_id, prod_name, SUM(amount) AS `상품별 구매개수` FROM buy
+GROUP BY mem_id, prod_name;
