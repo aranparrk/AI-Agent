@@ -67,3 +67,13 @@ INSERT INTO test_info3 (user_name, addr, gender, age) VALUES ('박지훈', '경�
 INSERT INTO test_info3 (user_name, addr, gender, age) VALUES ('최우식', '경기 양주시', '남자', 38);
 
 SELECT * FROM test_info3;
+
+-- 수정 UPDATE
+UPDATE test_info3
+SET user_name = '장원영'
+WHERE user_name = '박지훈';
+
+UPDATE test_info3 
+SET addr = '경기도 수원시', age = 18
+WHERE user_name = '리브';
+
