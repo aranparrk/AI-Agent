@@ -113,7 +113,7 @@ WHERE addr LIKE '%서울%';
 SELECT * FROM test_info3 WHERE addr LIKE '%서울%';
 
 -- 삭제 DELETE
-DELETE FROM test_info3
+DELETE FROM test_info3;
 
 
 -- test_id가 15번인 회원을 삭제하세요.
@@ -132,7 +132,7 @@ SELECT * FROM test_info3 WHERE age < 20;
 DELETE FROM test_info3
 WHERE user_name = '메이';
 
-SELECT * FROM test_info3 WHERE user_name = '메이'
+SELECT * FROM test_info3 WHERE user_name = '메이';
 
 -- 성별이 '남'이면서 나이가 22세 이상인 회원을 삭제하세요.
 DELETE FROM test_info3
