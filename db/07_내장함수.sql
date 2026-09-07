@@ -125,11 +125,10 @@ FROM member;
 -- ================================================
 
 -- 문제1 : member 테이블에서 이름과 함께 전화번호가 없는 경우 '연락처 미등록'이라고 출력하세요.
-SELECT mem_name, IFNULL(phone1, '연락처 미등록') AS `연락처` FROM member;
+SELECT mem_name, IFNULL(CONCAT(phone1, phone2), '연락처 미등록') AS `연락처` FROM member;
 
 -- 문제2 : product 테이블에서 상품 가격에 부가세 10%를 더한 뒤 정수로 반올림하여 출력하세요.
 SELECT prod_name, ROUND(price * 1.1) AS `가격` FROM buy;
-
 
 -- 문제3 : 오늘 날짜를 '2026년 08월 27일' 형식으로 출력하세요.
 SELECT DATE_FORMAT(CURDATE(), '%Y년%m월%d일');
@@ -141,10 +140,17 @@ SELECT mem_name, CHAR_LENGTH(mem_name) AS `글자 수` FROM member;
 SELECT UPPER(TRIM(mem_name)) AS `이름` FROM member;
 
 -- 문제6: member 테이블에서 전화번호 중 앞자리(phone1)의 하이픈을 제거한 값을 출력하세요.
+ALTER TABLE member
+MODIFY COLUMN phone1 VARCHAR(4); 
+
+UPDATE member
+SET phone1 = CONCAT(phone1, '-')
+WHERE phone1 IS NOT NULL;
+
 SELECT REPLACE(phone1, '-', '') AS `phone1` FROM member;
 
 -- 문제7: 회원번호(mem_no)를 항상 5자리로 만들고, 남는 자리는 앞에 '0'을 채워서 출력하세요. (예: 7 → '00007')
-SELECT LPAD(mem_id, 5, '0') FROM member;
+SELECT LPAD(mem_id, 5, '0') AS `회원아이디` FROM member;
 
 -- 문제8: buy 테이블에서 상품 가격을 100원 단위로 내림하여 출력하세요.
 SELECT FLOOR(price / 100) * 100 FROM buy;
@@ -153,13 +159,17 @@ SELECT FLOOR(price / 100) * 100 FROM buy;
 SELECT product_name, MOD(stock, 3) FROM product_info WHERE MOD(stock, 3) = 0;
 
 -- 문제10: member 테이블에서 데뷔일(debut_date) 기준으로 몇 년째인지(만 나이 계산과 유사하게) 정수로 출력하세요. (힌트: DATEDIFF와 YEAR를 조합하거나, TIMESTAMPDIFF를 사용해도 됩니다)
-SELECT CONCAT(TIMESTAMPDIFF(YEAR, debut_date, CURDATE()), '년') AS `데뷔년수` FROM member;
+SELECT CONCAT(TIMESTAMPDIFF(YEAR, debut_date, CURDATE()), '년') AS `데뷔연차` FROM member;
+
+SELECT mem_name, debut_date, YEAR(NOW()) - YEAR(debut_date) AS `데뷔연차` FROM member; 
 
 -- 문제11: member 테이블에서 데뷔일로부터 100일 후가 되는 날짜를 '2026-08-27' 형식으로 출력하세요.
-SELECT DATE_ADD(debut_date, INTERVAL 100 DAY) FROM member;
+SELECT DATE_FORMAT(DATE_ADD(debut_date, INTERVAL 100 DAY), '%Y-%m-%d') FROM member;
 
 -- 문제12: member 테이블에서 전화번호(phone1, phone2)가 둘 다 NULL인 경우 '번호없음', phone1만 있는 경우 phone1만, 둘 다 있는 경우 합쳐서 출력하세요. (힌트: CONCAT, IFNULL)
 SELECT IFNULL(CONCAT(phone1, IFNULL(phone2, '')), '번호없음') FROM member;
+
+SELECT mem_name, IFNULL(CONCAT(phone1, phone2), IFNULL(phone1, '번호없음')) AS 연락처 FROM member;
 
 -- 문제13: product 테이블에서 상품명과 가격을 "상품명 : 10,000원" 형식의 문자열 한 컬럼으로 합쳐서 출력하세요. (가격은 반올림 없이 정수 부분만 사용, 힌트: CONCAT과 TRUNCATE 또는 FORMAT 활용 가능)
 SELECT CONCAT(product_name, ' : ', FORMAT(TRUNCATE(price, 0), 0), '원') FROM product_info;
