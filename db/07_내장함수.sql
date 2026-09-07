@@ -98,9 +98,29 @@ SELECT MOD(10, 3);
 
 SELECT ABS(-3);
 
+-- =========================================================
 
-    
+-- 날짜 / 시간 함수
+SELECT NOW(); -- 현재 시간과 날짜
+SELECT CURDATE();
+SELECT YEAR('2025-06-01');
+SELECT YEAR('2026/06/01');
+SELECT YEAR('2024년05월01일');
+SELECT YEAR('2024_05_01');
+
+-- 날짜 차이 구하기
+SELECT mem_name, DATEDIFF(NOW(), debut_date) AS `데뷔일 이후 경과날` FROM member;
+
+-- 날짜 형식 출력하기
+SELECT DATE_FORMAT(debut_date, '%Y년%m월%d일 (%W)') AS `데뷔일`FROM member;
+
+SELECT DATE_FORMAT(CURDATE(), '%Y년%m월%d일 (%W)');
+
+-- NULL 처리 함수 :IFNULL (NULL인지 아닌지 체크)
+SELECT mem_name, IFNULL(phone1, '번호 없음') AS `연락처`
+FROM member;
+
+SELECT * FROM member WHERE mem_id = 'APN';
 
 
-
-
+ 
