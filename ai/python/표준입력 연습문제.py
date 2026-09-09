@@ -10,14 +10,13 @@ print(f'주소 : {addr}')
 # 각 자리를 2자리 폭에 0으로 채워서 출력하세요.
 time = list(map(int, input('시:분:초 : ').split(':')))
 
-print(f'{time[0]:02}:{time[1]:02}:{time[2]:02}')
+print(f'{time[0]:02d}:{time[1]:02d}:{time[2]:02d}')
 
 #%%
 # "국어 영어 수학 : " 안내 문구로 세 과목 점수를 공백 기준으로 한 번에 입력 받아 (map(int, input().split())) 평균을 구하고,
 # 평균이 60점 이상이면 "합격", 아니면 "불합격"을 삼항 연산자로 함께 출력하세요.
 
 korean, english, math = map(int, input("국어 영어 수학 : ").split(' '))
-
 avg = (korean + english + math) / 3
 
 print(f'결과 : {'합격' if avg >= 60 else '불합격'}')
