@@ -1,5 +1,6 @@
 # 연산자 : 프로그램에서 값을 계산하거나 변수에 대해 연산을 수행한흔 기호
 # 산술연산자 : 사칙연산, 나머지 연산
+from locale import currency
 from traceback import print_tb
 
 from 자료형 import is_adult
@@ -150,10 +151,12 @@ print('*' * 27)
 # 현재 연도(2026)를 기준으로 만 나이를 계산 (2026 - 태어난 연도)
 # 계산된 나이가 짝수인지 홀수인지 나머지 연산자(%)로 판별
 # 삼항 연산자를 사용해 "짝수" 또는 "홀수"를 변수에 저장한 뒤 다음과 같이 출력
+from datetime import datetime
 
 birthyear = int(input('태어난 연도를 입력하세요. : '))
-age = 2026 - birthyear
+current_year = datetime.now().year
+age = current_year - birthyear
 
 num = '짝수' if age % 2 == 0 else '홀수'
 
-print(num)
+print(f'당신의 나이는 {age}살이며, {num}입니다')
