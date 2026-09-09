@@ -42,5 +42,39 @@ print('보우하사 우리나라 만세')
 print('=======[탭 출력]=======')
 print('apple\tbanana\tgrape')
 
-# end와 sep
-print('=======[여러줄 출력]=======')
+# 제어문자, escape sequence : \n, \t, \r, \\, \b
+print('=======[제어문자 출력]=======')
+print('동해물과\t백두산이\n마르고 닳도록\b 하느님이\n\n\n\n')
+print('보우하사 \n우리나라 \\만세')
+
+print('안녕하세요. "장원영"님 환영합니다.')
+
+print("안녕하세요. \"장원영\"님 환영합니다.")
+
+print("딸기\r바나나\r키위")
+
+
+
+# import sys
+# import time
+#
+# total_time = 100  # 총 실행 시간 100ms
+# steps = 100
+# sleep_time = total_time / steps  # 한 단계당 대기 시간
+#
+# for i in range(1, steps + 1):
+#     print(f"\r진행률 : {i}% 입니다.", end="", flush=True)  # end=""로 줄바꿈 방지, flush=True로 즉시 출력
+#     time.sleep(sleep_time)
+#
+# print()  # 최종 줄 바꿈
+
+print('파이썬')
+print('파' + '이' + '썬')
+print('파''이''썬')
+print('파','이','썬', sep='')
+
+# end : 문자열을 출력하고 난 다음의 동작, 기본값이 줄바꿈 (\n)
+# sep : 문자열 사이에서 콤마를 만나면 동작, 기본값이 스페이스
+print('=============================')
+print('life is shot', end=' & ')
+print('you',  'need',  'python', sep = '\n')

@@ -1,2 +1,19 @@
 frontend/yupdduk-clone-page/
 node_modules/
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# Environment variables
+.env
