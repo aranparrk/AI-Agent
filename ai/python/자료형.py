@@ -49,3 +49,22 @@ print(bool(None))   # False
 # 형변환 : 데이터를 다른 자료형으로 변환할 때 사용
 print('100' + str(200))
 print(int('100') + 200)
+
+#%%
+# 사용자에게 나이를 입력받아 다음 조건에 따라 메시지를 출력하는 프로그램을 작성하세요.
+# 19세 이상이면 "성인입니다" 출력
+# 19세 미만이면 "미성년자입니다." 출력
+age = int(input('나이를 입력하세요 : '))
+
+if age >= 19:
+    print('성인입니다.')
+else:
+    print('미성년자입니다.')
+
+print(f'{'성인입니다.' if age >= 19 else '미성년자입니다.'}')
+
+#%%
+# sentenece = "Python programming is fun"
+# 첫 6글자("Python")만 출력하세요.
+sentence = "Python programming is fun"
+print(sentence[:6])
