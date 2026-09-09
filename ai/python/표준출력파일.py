@@ -96,3 +96,26 @@ print(f'|{num3:^6}|')
 print('========[소수점 이하 출력]========')
 PI = 3.141592
 print(f'{PI:.2f}')
+
+# 다양한 출력 스타일
+name = '박아란'
+age = 23
+gender = 'M'
+job = '개발자'
+addr = '충남 천안시'
+
+# 파이썬 스타일, 가장 최근에 추가된 방식(f-string), 3.6 이후
+# f와 {}로 사용합니다.
+print('===== 파이썬 스타일 =====')
+print(f'이름 : {name}')
+print(f'나이 : {age}')
+print(f'성별 : {gender}')
+print(f'직업 : {job}')
+print(f'주소 : {addr}\n')
+
+print('===== 자바 스타일 =====')
+print('이름 : ' + name)
+print('나이 : ' + str(age))
+print('성별 : ' + gender)
+print('직업 : ' + job)
+print('주소 : ' + addr)
