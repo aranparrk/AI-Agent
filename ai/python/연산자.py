@@ -1,9 +1,5 @@
 # 연산자 : 프로그램에서 값을 계산하거나 변수에 대해 연산을 수행한흔 기호
 # 산술연산자 : 사칙연산, 나머지 연산
-from locale import currency
-from traceback import print_tb
-
-from 자료형 import is_adult
 
 i = 10
 j = 4
