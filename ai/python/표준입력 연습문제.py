@@ -1,6 +1,6 @@
 #%%
 # "이름과 주소 입력 : " 안내 문구로 이름과 주소를 공백으로 구분해서 한 번에 입력 받고 (split() 활용), 두 값을 각각 출력하세요.
-name, addr = input('이름과 주소 입력 : ').split(' ')
+name, addr = input('이름과 주소 입력 : ').split()
 
 print(f'이름 : {name}')
 print(f'주소 : {addr}')
