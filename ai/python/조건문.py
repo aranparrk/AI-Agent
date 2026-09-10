@@ -50,16 +50,22 @@ if 0 <= korean <= 100 and 0 <= english <= 100 and 0 <= math <= 100:
     total_score = korean + english + math
     avg_score = total_score / 3
     if avg_score >= 90:
-        print(f'{name}, 평균 : {avg_score:.2f}점 A등급')
+        grade = 'A'
     elif avg_score >= 80:
-        print(f'{name}, 평균 : {avg_score:.2f}점 B등급')
+        grade = 'B'
     elif avg_score >= 70:
-        print(f'{name}, 평균 : {avg_score:.2f}점 C등급')
+        grade = 'C'
     elif avg_score >= 60:
-        print(f'{name}, 평균 : {avg_score:.2f}점 D등급')
+        grade = 'D'
     else:
-        print(f'{name}, 평균 : {avg_score:.2f}점 F등급')
+        grade = 'F'
+
+    print(f'총점 : {total_score} 평균 :{avg_score:.2f}')
+    print(f'{name}, {grade}등급')
 else:
     print("성적이 잘못 입력 되었습니다.")
+
+#%%
+# 계절을 영문으로 입력 받아 계정에 맞는 문구 출력하기
 
 
