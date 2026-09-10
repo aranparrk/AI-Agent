@@ -65,7 +65,80 @@ if 0 <= korean <= 100 and 0 <= english <= 100 and 0 <= math <= 100:
 else:
     print("성적이 잘못 입력 되었습니다.")
 
+
 #%%
-# 계절을 영문으로 입력 받아 계정에 맞는 문구 출력하기
+# 계절을 영문으로 입력 받아 계절에 맞는 문구 출력하기
+# spring, summer, fall, autumn, winter 입력 받아서 계절에 맞는 문구 출력
+# 단, 비교의 편의를 위해 입력 받은 문자열은 대문자로 변환해서 비교하기
 
+season = input('계절을 입력하세요. : ').upper().strip()
 
+if season == 'SPRING':
+    print('봄')
+elif season == 'SUMMER':
+    print('여름')
+elif season == 'FALL' or season == 'AUTUMN':
+    print('가을')
+elif season == 'WINTER':
+    print('겨울')
+else:
+    print('잘못 입력 하셨습니다.')
+
+#%%
+# [실습 문제] 자판기 만들기 (조건문만 사용)
+#
+# 아래 메뉴를 참고하여 자판기 프로그램을 작성하시오.
+#
+# 1. 콜라 - 1100원
+# 2. 사이다 - 1000원
+# 3. 커피 - 700원
+# 4. 생수 - 600원
+#
+# [처리 조건]
+# 1) 사용자로부터 구매할 음료 번호(1~4)를 입력 받는다.
+# 2) 메뉴에 없는 번호를 입력하면 "존재하지 않는 메뉴입니다." 출력 후 종료한다.
+# 3) 올바른 번호를 입력했다면, 선택한 음료의 이름과 가격을 안내하고
+#    투입할 금액을 입력 받는다.
+# 4) 투입한 금액이 음료 가격보다 적으면
+#    "금액이 부족합니다. 000원이 부족합니다."를 출력하고 종료한다.
+#    (부족한 금액이 정확히 계산되어 출력되어야 함)
+# 5) 투입한 금액이 음료 가격 이상이면
+#    "000가 나왔습니다. 잔돈 000원을 거슬러 드립니다."를 출력한다.
+#    (거스름돈이 정확히 계산되어 출력되어야 함)
+#
+# 반복문(while, for), 딕셔너리는 사용하지 말고 조건문(if/elif/else)만으로 작성할 것
+
+print('[ 메뉴 ]')
+print('1. 콜라 - 1100원')
+print('2. 사이다 - 1000원')
+print('3. 커피 - 700원')
+print('4. 생수 - 600원')
+drink_num = int(input('구매할 음료 번호를 입력하세요. (1~4) : '))
+
+if drink_num == 1:
+   drink_name = '콜라'
+   price = 1100
+elif drink_num == 2:
+    drink_name = '사이다'
+    price = 1000
+elif drink_num == 3:
+    drink_name = '커피'
+    price = 700
+elif drink_num == 4:
+    drink_name = '생수'
+    price = 600
+else:
+    drink_num = '없음'
+    price = 0
+
+if drink_num == '없음':
+    print('존재하지 않는 메뉴 입니다.')
+else:
+    print(f'{drink_name}을 선택하셨습니다. 가격은 {price}원 입니다.')
+
+    money = int(input('금액을 투입하세요 : '))
+
+    if price > money:
+        print(f'금액이 부족합니다. {price - money}원 부족합니다.')
+    else:
+        print(f'{drink_name} 나왔습니다. 잔돈 {money - price}원을 거슬러 드립니다.')
