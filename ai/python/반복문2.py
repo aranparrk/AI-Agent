@@ -74,3 +74,38 @@ for i in range(len(text)):
         print(text[i].lower(), end='')
     elif text[i].islower():
         print(text[i].upper(), end='')
+
+new_text = ''
+
+for e in text :
+    if e.isupper():
+        new_text += e.lower()
+    elif e.islower():
+        new_text += e.upper()
+    else:
+        new_text += e
+
+print(new_text)
+#%%
+# 정수값을 입력 받아 3의 배수, 5의 배수이면 값을 출력 1줄에 5개씩 출력
+num = int(input('정수 입력 : '))
+
+cnt = 0
+for i in range(1, num + 1):
+    if i % 3 == 0 or i %  5 == 0:
+        print(f'{i:3}', end=' ')
+        cnt += 1
+        if cnt == 5:
+            print()
+            cnt = 0
+
+#%%
+# 이중 for문
+# 입력 받은 수가 10이라면 10 * 10 행렬 출력
+
+num = int(input('정수 입력 : '))
+
+for i in range(1, num + 1):
+    for j in range(1, num + 1):
+        print('*', end=' ')
+    print()
