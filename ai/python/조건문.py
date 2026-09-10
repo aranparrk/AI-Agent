@@ -116,8 +116,8 @@ print('4. 생수 - 600원')
 drink_num = int(input('구매할 음료 번호를 입력하세요. (1~4) : '))
 
 if drink_num == 1:
-   drink_name = '콜라'
-   price = 1100
+    drink_name = '콜라'
+    price = 1100
 elif drink_num == 2:
     drink_name = '사이다'
     price = 1000
