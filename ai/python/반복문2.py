@@ -105,7 +105,37 @@ for i in range(1, num + 1):
 
 num = int(input('정수 입력 : '))
 
+cnt = 0
 for i in range(1, num + 1):
     for j in range(1, num + 1):
-        print('*', end=' ')
+        cnt += 1
+        print(f'{cnt:4}', end='')
+    print()
+
+#%%
+# 단일 for문으로 변경해서 출력 해보기
+# 반복문 범위를 num * num
+# i % num == 0 : print()
+num = int(input('정수 입력 : '))
+
+for i in range(1, num * num + 1):
+    print(f'{i:4}', end='')
+    if i % num == 0:
+        print()
+
+#%%
+# 선택한 구구단 출력하기
+dan = int(input('단을 입력하세요. : '))
+
+print(f'{dan}단 시작!')
+for i in range(1, 10):
+    print(f'{dan} X {i} = {dan * i}')
+
+#%%
+# 2 ~ 9단까지 구구단 출력하기
+
+for i in range(2, 10):
+    print(f'{i}단 시작')
+    for j in range(1, 10):
+        print(f'{i} X {j} = {i * j}')
     print()
