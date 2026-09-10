@@ -142,3 +142,33 @@ else:
         print(f'금액이 부족합니다. {price - money}원 부족합니다.')
     else:
         print(f'{drink_name} 나왔습니다. 잔돈 {money - price}원을 거슬러 드립니다.')
+
+#%%
+# [실습 문제]
+# 주간 근무 : 10320원
+# 야간 근무 : 주간 시급 * 1.5
+#
+# - 주간근무[1], 야간근무[2]를 입력하세요 :
+# - 근무 시간을 입력해 주세요 :
+# - 입력한 시간 동안 근무한 주간 또는 야간 급여는 ___원 입니다.
+
+work_shift = int(input('주간근무[1], 야간근무[2]를 입력하세요 : '))
+work_hours = int(input('근무 시간을 입력해 주세요 : '))
+
+day_wage = 10320
+night_wage = day_wage * 1.5
+
+if work_shift == 1:
+    work_type = '주간'
+    pay = day_wage * work_hours
+elif work_shift == 2:
+    work_type = '야간'
+    pay = night_wage * work_hours
+else:
+    work_type = '없음'
+    pay = 0
+
+if work_type == '없음':
+    print('잘못 입력 하셨습니다.')
+else:
+    print(f'{work_hours}시간 동안 근무한 {work_type} 급여는 {pay:,.0f}원 입니다.')
