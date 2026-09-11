@@ -37,3 +37,40 @@ print(f'\n입력한 숫자의 합 : {sum}')
 square = list(map(lambda a: a ** 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
 print(square)
+
+#%% 입력 받은 값을 역순으로 출력하기
+
+num = list(map(int, input('숫자를 입력 하세요. : ').split()))
+
+for i in range(len(num) - 1, -1, -1):
+    print(num[i], end=' ')
+
+#%%
+# 별 100개 찍기
+for i in range(10):
+    print(f'|i = {i}|', end='')
+    for j in range(10):
+        print('*', end= ' ')
+    print()
+
+#%%
+# 입력 : 5
+# *
+# **
+# ***
+# ****
+# *****
+
+# *****
+# ****
+# ***
+# **
+# *
+
+star = int(input('숫자를 입력 하세요 : '))
+
+for i in range(star + 1):
+    print('*' * i)
+
+for i in range(star, -1, -1):
+    print('*' * i)
