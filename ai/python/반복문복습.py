@@ -69,8 +69,20 @@ for i in range(10):
 
 star = int(input('숫자를 입력 하세요 : '))
 
-for i in range(star + 1):
+for i in range(1, star + 1):
     print('*' * i)
 
-for i in range(star, -1, -1):
+for i in range(star, 0, -1):
     print('*' * i)
+
+print()
+
+for i in range(star):
+    for j in range(i + 1):
+        print('*', end=' ')
+    print()
+
+for i in range(star):
+    for j in range(star - i):
+        print('*', end=' ')
+    print()
