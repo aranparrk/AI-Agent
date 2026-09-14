@@ -109,5 +109,5 @@ num = list(map(int, input('숫자 입력 : ').split()))
 odd = list(filter(lambda x: x % 2 == 1, num))
 even = list(filter(lambda x: x % 2 == 0, num))
 
-print(f'홀수 : {odd_list}')
-print(f'짝수 : {even_list}')
+print(f'홀수 : {odd}')
+print(f'짝수 : {even}')
