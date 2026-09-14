@@ -88,3 +88,26 @@ print(new_list)
 text_list = {'A', 'B', 'C', 'D', 'B', 'D', 'E'}
 
 print(text_list)
+
+#%% 임의의 숫자를 입력 받아 홀수와 짝수 리스트에 나눠 담아서 출력하기
+
+num = list(map(int, input('숫자 입력 : ').split()))
+odd_list = []
+even_list = []
+
+for i in num:
+    if i % 2 == 0:
+        even_list.append(i)
+    else:
+        odd_list.append(i)
+
+print(f'홀수 : {odd_list}')
+print(f'짝수 : {even_list}')
+
+#%%
+num = list(map(int, input('숫자 입력 : ').split()))
+odd = list(filter(lambda x: x % 2 == 1, num))
+even = list(filter(lambda x: x % 2 == 0, num))
+
+print(f'홀수 : {odd_list}')
+print(f'짝수 : {even_list}')
