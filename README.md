@@ -104,10 +104,12 @@ AI-Agent/
 | `🐛 fix` | 코드 오류 수정 |
 | `♻️ refactor` | 기존 코드 구조 및 로직 개선 |
 | `📝 docs` | README 등 문서 수정 |
+| `🔧 chore` | 설정 파일 및 기타 관리 작업 |
 
 ```text
 ✨ add: Python 문자열 실습 추가
 🐛 fix: 반복문 코드 오류 수정
 ♻️ refactor: 조건문 코드 개선
 📝 docs: README 수정
+🔧 chore: 설정 파일 및 기타 관리 작업
 ```
