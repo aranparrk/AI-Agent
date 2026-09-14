@@ -17,3 +17,5 @@ venv/
 
 # Environment variables
 .env
+
+/ai/python/알고리즘.py
