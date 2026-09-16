@@ -151,7 +151,7 @@ def is_prime(num):
 
         for i in range(2, num):
             if num % i == 0:
-                is_prime = False
+                is_prime = False # 소수가 아닌 경우
                 break
 
         if is_prime:
@@ -159,4 +159,4 @@ def is_prime(num):
 
     return prime_sum
 
-print(is_prime(11))
+print(is_prime(12))

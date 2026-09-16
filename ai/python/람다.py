@@ -1,0 +1,137 @@
+# 람다 : 간단한 함수의 선언과 호출을 하나의 식으로 간략히 표현
+# 람다 함수를 이용에 익명의 함수를 만들 수 있음
+# 람다 함수의 장점은 코드의 간결함, 메모리의 절약
+
+def add(a,b):
+    return a + b
+
+print(add(10,20))
+
+print(f'{ (lambda a, b: a + b)(1, 2)}')
+
+def power(n):
+    return n * n
+
+out = list(map(lambda x: x * x, [1, 2, 3, 4, 5]))
+
+print(out)
+
+#%%
+# - 사용자로부터 좌석 번호를 입력받아 예매하는 시스템이다.
+# - 예매가 완료되면 해당 좌석 값을 1로 변경한다.
+# - 이미 예매가 완료된 좌석은 재구매할 수 없다.
+# - 한 좌석당 예매 가격은 12000원이다.
+# - 프로그램 종료 후, 해당 영화관의 총 매출액을 출력한다.
+
+# 좌석 목록 및 티켓 가격
+seats = [0] * 10
+ticket_price = 12000
+
+
+# 좌석 출력 함수
+def print_seats():
+    cnt = 0
+
+    for i in range(len(seats)):
+        if seats[i] == 0:
+            print(f'[ ]', end=' ')
+        else:
+            print(f'[V]', end=' ')
+
+        cnt += 1
+
+        if cnt == 5:
+            cnt = 0
+            print()
+
+
+# 좌석 선택 함수
+def reserve_seat(num):
+    if num < 1 or num > len(seats):
+        print('존재하지 않는 좌석입니다.')
+
+    elif seats[num - 1] == 1:
+        print('이미 예약된 좌석입니다.')
+
+    else:
+        seats[num - 1] = 1
+        print(f'{num}번 좌석이 예약되었습니다.')
+
+
+# 판매 금액 계산 함수
+def calculate_total_sales():
+    total = 0
+
+    for i in range(len(seats)):
+        if seats[i] == 1:
+            total += ticket_price
+
+    return total
+
+def cancel_seat(num):
+    if num < 1 or num > len(seats):
+        print('존재하지 않는 좌석입니다.')
+
+    elif seats[num - 1] == 1:
+        seats[num - 1] = 0
+        print(f'{num}번 좌석 예매 취소 되었습니다.')
+    else:
+        print(f'{num}번 좌석은 예매 되어 있지 않습니다.')
+
+
+# 입력 메뉴 구성
+print('[1] 좌석 조회')
+print('[2] 좌석 선택')
+print('[3] 취소')
+print('[0] 종료')
+
+while True:
+    menu_number = input('\n메뉴를 선택하세요 : ')
+
+    if not menu_number.isdigit():
+        print('메뉴 번호를 잘못 입력하셨습니다. 다시 입력해주세요.')
+        continue
+
+    menu_number = int(menu_number)
+
+    if menu_number == 1:
+        print_seats()
+
+    elif menu_number == 2:
+        while True:
+            seat_number = input(
+                '좌석 번호를 입력하세요. 예매가 완료되면 [Enter] : '
+            )
+
+            if seat_number == '':
+                break
+
+            if not seat_number.isdigit():
+                print('숫자를 입력해주세요.')
+                continue
+
+            reserve_seat(int(seat_number))
+
+    elif menu_number == 3:
+        while True:
+            seat_number = input(
+                '좌석 번호를 입력하세요. 예매가 취소가 완료되면 [Enter] : '
+            )
+            if seat_number == '':
+                break
+
+            if not seat_number.isdigit():
+                print('숫자를 입력해주세요.')
+                continue
+
+            cancel_seat(int(seat_number))
+
+    elif menu_number == 0:
+        total = calculate_total_sales()
+
+        print(f'총 매출액은 {total:,}원입니다.')
+        print('종료되었습니다.')
+        break
+
+    else:
+        print('잘못 입력하셨습니다.')
