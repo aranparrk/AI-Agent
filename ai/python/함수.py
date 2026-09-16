@@ -138,3 +138,25 @@ while True:
             print(f'표준체중은 {result:.2f}kg입니다.')
         break
     break
+
+#%%
+# 소수의 합 구하기
+# 입력 받은 정수보다 미만의 소수의 합을 구하는 함수를 만드세요
+
+def is_prime(num):
+    prime_sum = 0
+
+    for num in range(2, num + 1):
+        is_prime = True
+
+        for i in range(2, num):
+            if num % i == 0:
+                is_prime = False
+                break
+
+        if is_prime:
+            prime_sum += num
+
+    return prime_sum
+
+print(is_prime(11))
