@@ -68,3 +68,16 @@ def check_even_odd(num):
 print(check_even_odd(5))
 print(check_even_odd(6))
 print(check_even_odd(7))
+
+#%%
+# 기본값 인자 : 함수 선언 시 매개 변수에 대한 기본값의 정의
+# - 매개변수에 기본값이 정의 되어 있는 경우 함수 호출 시 인자값을 넣지 않으면 기본값으로 호출
+def profile(name, age=0, job='무직', addr='대한민국'):
+    print(f'이름 : {name}')
+    print(f'나이 : {age}')
+    print(f'직업 : {job}')
+    print(f'주소 : {addr}')
+
+profile('안유진', 23, '아이돌','대전시' )
+profile('장원영', 22, '아이돌' )
+profile('이서', 20 )
