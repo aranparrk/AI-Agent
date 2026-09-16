@@ -135,3 +135,83 @@ while True:
 
     else:
         print('잘못 입력하셨습니다.')
+
+#%%
+# 함수로 입력 받은 수가 짝수인지 홀수 인지 결과 출력
+def odd_even(num):
+    if num % 2 == 0:
+        return '짝수'
+    else:
+        return '홀수'
+
+print(odd_even(5))
+print(odd_even(6))
+
+#%%
+# 입력으로 들어오는 수의 평균을 구해서 반환 후 출력 하기
+num = list(map(int, input('숫자를 입력하세요.').split()))
+
+def avg(num):
+    return sum(num) / len(num)
+
+print(f'{avg(num)}:.2f')
+
+
+#%%
+# 소수의 합 구하기
+def solution(num):
+    total = 0
+    for i in range(2, num + 1):
+        is_prime = True
+
+        for e in range(2, i):
+            if i % e == 0:
+                is_prime = False
+                break
+
+        if is_prime:
+            total += i
+
+    return total
+
+print(solution(5))
+print(solution(6))
+print(solution(7))
+print(solution(8))
+print(solution(9))
+
+#%%
+# 두번째 수 찾기
+def second_num(ls, n):
+    cnt = 0
+    for i in range(len(ls)):
+        if ls[i] == n:
+            if cnt == 0 :
+                return i + 1
+            else: cnt += 1
+    return -1
+
+ls = list(map(int, input("리스트 입력 : ").split()))
+n = int(input("찾는 숫자 : "))
+print(second_num(ls, n))
+#%%
+#세자리수 정수 입력 받아 가장 큰 수 출력하기
+
+a = b = c = 0
+def num_split(input):
+    global a, b, c
+    a = input // 100
+    b = (input % 100) // 10
+    c = (input % 100) % 10
+
+def compare_num():
+    if a > b:
+        if a > c: return a
+        else: return c
+    else:
+        if b > c: return b
+        else: return c
+
+n = int(input())
+num_split(n)
+print(compare_num())
