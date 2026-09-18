@@ -15,6 +15,10 @@ class Car:
         self.speed = speed
         print(f'자동차 {self.size} & {self.model}가 시속 시속 {self.speed}')
 
+    @classmethod
+    def print_cnt(cls):
+        print(f'자동차가 {cls.isinstance_count}대 만들어 졌습니다.')
+
     @staticmethod
     def check_type(code):
         if (code <= 10) : print('전기차 입니다')
@@ -22,8 +26,11 @@ class Car:
         elif (code <= 30) : print('디젤차 입니다')
         else : print('분류 코드가 없습니다')
 
+
+
 car1 = Car('소형', '모닝')
 car2 = Car('중형', '쏘나타')
+Car.print_cnt()
 
 car1.move(90)
 Car.check_type(11)
