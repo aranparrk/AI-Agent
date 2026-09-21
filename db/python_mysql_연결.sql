@@ -1,0 +1,7 @@
+DROP DATABASE IF EXISTS mysqlDB;
+
+CREATE DATABASE mysqlDB;
+
+USE mysqlDB;
+
+SELECT * FROM userTable;
