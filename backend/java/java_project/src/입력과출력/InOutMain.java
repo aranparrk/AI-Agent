@@ -1,5 +1,7 @@
 package 입력과출력;
 
+import java.util.Scanner;
+
 public class InOutMain { // 자바 클래스 이름은 대문자로 시작해야 함
     public static void main(String[] args) {
         // System.in : 표준 입력 스트림
@@ -70,5 +72,32 @@ public class InOutMain { // 자바 클래스 이름은 대문자로 시작해야
         System.out.println("3 X 7 = 21");
         System.out.println("3 X 8 = 24");
         System.out.println("3 X 9 = 27");
+
+        // 표준 입력은 스캐너 객체 사용
+        Scanner sc = new Scanner(System.in); // 스캐너 객체 생성
+
+        // 이름, 주소, 성별, 나이, 이메일을 입력 받아 출력하기
+        System.out.print("이름 : "); // 줄바꿈 없음
+        String name1 = sc.next(); // 문자열을 공백 기준으로 입력 받음
+        sc.nextLine();
+        System.out.print("주소 : ");
+        String addr1 = sc.nextLine(); // 문자열을 줄바꿈 기준으로 입력 받음
+        System.out.print("성별 : ");
+        char gender1 = sc.next().charAt(0); // 문자열에서 해당 인덱스의 문자를 추출
+        System.out.print("나이 : ");
+        int age1 = sc.nextInt(); // 정수 입력
+        System.out.print("이메일 : ");
+        String email = sc.next(); // 문자열 입력
+
+        // 출력 해보기, 단 성별은 "남성", "여성"으로 출력
+        System.out.printf("%s %s%n", "이름 : ", name1);
+        System.out.printf("%s %s%n", "주소 : ", addr1);
+        System.out.printf("%s %s%n", "성별 : ", (gender1 == 'M' ? "남성" : "여성"));
+        System.out.printf("%s %d%n", "나이 : ", age1);
+        System.out.printf("%s %s%n", "이메일 : ", email);
+
+
+
+
     }
 }
