@@ -1,6 +1,6 @@
 package 변수와자료형;
 
-public class 변수와자료형 {
+public class DataType {
     public static void main(String[] args) {
         boolean isTrue = true; // 참과 거짓 구분 용도, 1byte
         char gender = 'M'; // 문자 저장, 자바에 문자는 '', 문자열 "", 문자는 내부적으로 정수값으로 사용 됨, 부호 없는 2byte
