@@ -3,28 +3,35 @@ package 회원정보예제;
 import java.util.Scanner;
 
 public class Member {
-    String name;
-    int age;
-    char gender;
-    int job;
-    Scanner sc = new Scanner(System.in);
+    private String name; // 인스턴스 필드, 객체 생성 시 함께 생성 됨
+    private int age; // private은 클래스 내부에서만 접근 가능한 접근 제한자
+    private char gender;
+    private int job;
+    private final Scanner sc = new Scanner(System.in);
 
-    public void setName() {
+    // 이름 설정하기, 세터
+    public void setName() { // void : return값이 없음
         System.out.println("이름 : ");
         name = sc.nextLine();
     }
 
+    // 이름 가져오기
     public String getName() {
         return name;
     }
 
+    // 나이 설정하기
     public void setAge() {
-        while(true){
-            System.out.println("나이 : ");
-            age = sc.nextInt();
-            if(0 < age && age < 200) break;
-            else System.out.println("나이를 잘못 입력 하셨습니다. 다시 입력하세요/");
-
+            while (true) {
+                System.out.println("나이 : ");
+                String ageStr = sc.nextLine();
+                try {
+                    age = Integer.parseInt(ageStr);
+                    if(age >= 0 && age < 200) break;
+                    System.out.println("나이 입력 범위가 아닙니다.");
+                } catch (NumberFormatException e) {
+                    System.out.println("숫자만 입력하세요.");
+                }
             }
         }
 
