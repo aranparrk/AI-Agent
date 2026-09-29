@@ -73,6 +73,13 @@ public class Television extends ProtoTV {
         return this.isSmart;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    public String getBrand() {
+        return this.brand;
+    }
+
     // TV 정보 출력하기
     public void showTelevision() {
         System.out.println("전원 : " + isOn);
