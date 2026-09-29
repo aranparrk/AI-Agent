@@ -34,7 +34,7 @@ public class Member {
                 }
             }
         }
-
+    // 나이 가져 오기
     public int  getAge() {
         return age;
     }
@@ -55,9 +55,14 @@ public class Member {
     public void setJob() {
         while(true) {
             System.out.println("직업 : ");
-            job = sc.nextInt();
-            if (job == 1 || job == 2 || job == 3 || job == 4) break;
-            else System.out.println("직업을 다시 입력 해주세요");
+            String jobStr = sc.nextLine();
+            try {
+                job = Integer.parseInt(jobStr);
+                if (job >= 1 && job <= 4) break;
+                System.out.println("직업을 다시 입력 해주세요");
+            } catch (NumberFormatException e) {
+                System.out.println("숫자만 입력하세요.");
+            }
         }
     }
 
