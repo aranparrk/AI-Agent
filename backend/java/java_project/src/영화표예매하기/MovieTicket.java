@@ -51,6 +51,7 @@ public class MovieTicket {
         if (seat[seatNum - 1] == 1) {
             seat[seatNum - 1] = 0;
             System.out.printf("%d번 좌석이 취소되었습니다.%n", seatNum);
+            printSeat();
         } else {
             System.out.printf("%d번 좌석은 이미 비어있는 좌석입니다.%n", seatNum);
         }
