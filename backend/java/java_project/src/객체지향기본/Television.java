@@ -40,7 +40,7 @@ public class Television extends ProtoTV {
     }
 
     // 부모가 만든 채널 설정을 오버라이딩해서 채널을 1 ~ 2000 늘리기
-    @Override // 오버라이딩 관계의 성립 여부를 확인하는 어노테이션
+    @Override // 오버라이딩 관계의 성립 여부를 확인하는 어노테이스
     public void setChannel(int channel) {
         if (channel >= 1 && channel <= 2000) {
             this.channel = channel;
@@ -51,8 +51,17 @@ public class Television extends ProtoTV {
 
     // 오버라이딩 채널 설정을 오버로딩해서 스마트 기능 구현하기
     public void setChannel(int channel, boolean isSmart) {
-        this.isSmart = isSmart;
-        setChannel(channel);
+        if (isSmart) {
+            System.out.println("스마트 TV 모드 입니다.");
+            this.isSmart = true;
+        } else {
+            this.isSmart = false;
+            if (channel >= 1 && channel <= 2000) {
+                this.channel = channel;
+            } else {
+                System.out.println("채널 설정 범위가 아닙니다.");
+            }
+        }
     }
 
     public int getChannel() {
