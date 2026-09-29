@@ -12,8 +12,9 @@ public class Television extends ProtoTV {
     }
 
     // 생성자 오버로딩
-    public Television(boolean isOn, int channel, int volume) {
+    public Television(boolean isOn, int channel, int volume, String brand) {
         super(isOn, channel, volume); // super()는 부모의 생성자를 호출함, 외부에서 전달 받은 값
+        this.brand = brand;
     }
 
     // 전원을 켜고 끄는 메서드 생성
@@ -70,14 +71,6 @@ public class Television extends ProtoTV {
 
     public boolean isSmart() {
         return this.isSmart;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getBrand() {
-        return this.brand;
     }
 
     // TV 정보 출력하기
