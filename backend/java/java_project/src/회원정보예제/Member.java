@@ -71,6 +71,7 @@ public class Member {
     }
 
     public void getInfo() {
+        // final은 최종 값을 의미 함(상수)
         final String[] jobStr = {"", "학생", "회사원", "주부", "무직"};
         System.out.println("=".repeat(7) + "회원 정보" + "=".repeat(7));
         System.out.println("이름 : " + name);

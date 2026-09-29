@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class MemberMain {
     public static void main(String[] args) {
+        // Member 클래스에 대한 객체 생성
         Member member = new Member();
 
         member.setName();
