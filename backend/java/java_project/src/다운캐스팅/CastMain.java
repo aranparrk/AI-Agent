@@ -14,7 +14,6 @@ public class CastMain {
     }
 
     public void addAnimal(){
-        animalList.add(new Animal());
         animalList.add(new Human());
         animalList.add(new Tiger());
         animalList.add(new Eagle());
@@ -28,19 +27,8 @@ public class CastMain {
 
     public void downCast() {
         for (Animal animal : animalList){
-            if (animal instanceof Human h){
-                h.readBook();
-            } else if (animal instanceof Tiger t){
-                t.hunting();
-            } else if (animal instanceof Eagle e){
-                e.flying();
-            } else if (animal instanceof Dog d){
-                d.playing();
-            } else if (animal instanceof Cat c){
-                c.eating();
-            } else {
-                System.out.println("지원되지 않는 형입니다.");
-            }
+            animal.move();
+            animal.option();
         }
     }
 }

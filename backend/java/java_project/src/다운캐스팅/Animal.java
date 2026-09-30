@@ -1,9 +1,11 @@
 package 다운캐스팅;
 
-public class Animal {
+public abstract class Animal {
     public void move(){
         System.out.println("동물이 움직입니다.");
     }
+
+    public abstract void option();
 }
 
 class Human extends Animal {
@@ -12,7 +14,8 @@ class Human extends Animal {
         System.out.println("사람이 두 발로 걷습니다.");
     }
 
-    public void readBook(){
+    @Override
+    public void option(){
         System.out.println("사람이 책을 읽습니다.");
     }
 }
@@ -23,7 +26,8 @@ class Tiger extends Animal {
         System.out.println("호랑이가 네 발로 뜁니다.");
     }
 
-    public void hunting(){
+    @Override
+    public void option(){
         System.out.println("호랑이가 사냥을 합니다.");
     }
 }
@@ -34,7 +38,8 @@ class Eagle extends Animal {
         System.out.println("독수리가 하늘을 납니다.");
     }
 
-    public void flying(){
+    @Override
+    public void option(){
         System.out.println("독수리가 날개를 쭉 펴고 멀리 날아갑니다.");
     }
 }
@@ -45,7 +50,8 @@ class Dog extends Animal {
         System.out.println("강아지가 뜁니다");
     }
 
-    public void playing() {
+    @Override
+    public void option() {
         System.out.println("강아지가 공을 가지고 놉니다.");
     }
 }
@@ -56,7 +62,8 @@ class Cat  extends Animal {
         System.out.println("고양이가 담장을 넘습니다");
     }
 
-    public void eating(){
+    @Override
+    public void option(){
         System.out.println("고양이가 츄르를 먹습니다.");
     }
 }
