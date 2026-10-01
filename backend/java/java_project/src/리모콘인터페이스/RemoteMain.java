@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class RemoteMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        RemoteControl remote;
+        RemoteControl remote = null;
 
         while (true) {
             System.out.print("제품을 선택 [1]PlayStation [2]TV [3]Audio (엔터 > 종료) : ");
