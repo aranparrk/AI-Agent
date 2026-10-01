@@ -18,8 +18,8 @@ public class Player {
     void viewSettings() {
         System.out.println(name + "의 현재 설정");
         System.out.println("해상도 : " + gameSetting.getResolution());
-        System.out.println("볼륨 : " + gameSetting.getDifficulty());
-        System.out.println("난이도 : " + gameSetting.getVolume());
+        System.out.println("볼륨 : " + gameSetting.getVolume());
+        System.out.println("난이도 : " + gameSetting.getDifficulty());
 
     }
 }
