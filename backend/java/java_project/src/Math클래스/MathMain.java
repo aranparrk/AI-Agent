@@ -40,6 +40,35 @@ public class MathMain {
         lotto.sort(null);
         System.out.println(lotto);
 
+        System.out.println("=".repeat(30));
+        System.out.println(Math.abs(10));               // 10
+        System.out.println(Math.abs(-10));              // 10
+        System.out.println(Math.abs(-3.14));            // 3.14
+
+        // ceil() : 소수점이하가 있으면 무조건 올림
+        System.out.println("=".repeat(30));
+        System.out.println(Math.ceil(10.0));            // 10.0
+        System.out.println(Math.ceil(10.1));            // 11.0
+        System.out.println(Math.ceil(10.00000001));     // 11.0
+
+        // floor() : 소수점 이하를 무조건 날림
+        System.out.println("=".repeat(30));
+        System.out.println(Math.floor(10.0));           // 10.0
+        System.out.println(Math.floor(10.9));           // 10.0
+        System.out.println(Math.floor(10.0000001));     // 10.0
+
+        // round() : 반올림
+        System.out.println("=".repeat(30));
+        System.out.println(Math.round(10.0));           // 10
+        System.out.println(Math.round(10.4999));        // 10
+        System.out.println(Math.round(10.5));           // 11
+
+        // max()와 min()
+        int x = 10;
+        int y = 20;
+        System.out.println("=".repeat(30));
+        System.out.println(Math.max(x, y));             // 20
+        System.out.println(Math.min(x, y));             // 10
 
     }
 }
