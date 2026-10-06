@@ -1,6 +1,6 @@
 package 제네릭실습;
 
-public class GenericPrinter<T> {
+public class GenericPrinter<T extends Meterial> {
     private T material;
 
     public T getMaterial() {
@@ -16,6 +16,10 @@ public class GenericPrinter<T> {
     }
 }
 
+abstract class Meterial {
+    public abstract void doPrinting();
+}
+
 // 재료가 분말
 class Power {
     public void doPrinting() {
@@ -28,7 +32,8 @@ class Power {
 }
 
 // 재료가 플라스틱
-class Plastic {
+class Plastic extends Meterial {
+    @Override
     public void doPrinting() {
         System.out.println("Plastic 재료로 출력 합니다.");
     }
@@ -39,7 +44,8 @@ class Plastic {
 }
 
 // 재료가 Nylon
-class Nylon {
+class Nylon extends Meterial {
+    @Override
     public void doPrinting() {
         System.out.println("Nylon 재료로 출력 합니다.");
     }
