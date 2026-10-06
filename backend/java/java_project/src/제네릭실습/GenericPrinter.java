@@ -21,7 +21,7 @@ abstract class Meterial {
 }
 
 // 재료가 분말
-class Power {
+class Power extends Meterial {
     public void doPrinting() {
         System.out.println("Power 재료로 출력 합니다.");
     }
