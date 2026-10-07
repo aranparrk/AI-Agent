@@ -1,5 +1,6 @@
 package com.human.mini_prj.service;
 
+import com.human.mini_prj.dto.LoginReqDto;
 import com.human.mini_prj.dto.SignUpReqDto;
 import com.human.mini_prj.entity.Member;
 import com.human.mini_prj.repository.MemberRepository;
