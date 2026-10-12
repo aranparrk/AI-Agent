@@ -20,7 +20,7 @@ class ItemRepositoryTest {
     @Test
     @DisplayName("상품 저장 테스트")
     public void createItemTest(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 1; i < 10; i++){
             Item item = new Item();
             item.setItemNm("테스트 상품" + i);
             item.setPrice(10000 * i);
@@ -167,5 +167,29 @@ class ItemRepositoryTest {
         long count = itemRepository.countByItemSellStatus(ItemSellStatus.SELL);
 
         log.info("조회된 결과 {}",  count);
+    }
+
+    @Test
+    @DisplayName("JPQL")
+    public void findByItemDetailLikeTest() {
+        this.createItemTest();
+
+        List<Item> itemList = itemRepository.findByItemDetailLike("테스트 상품 상세 설명1");
+
+        for (Item item : itemList) {
+            log.info("조회된 결과 {}", item);
+        }
+    }
+
+    @Test
+    @DisplayName("native")
+    public void findByItemSellStatusNative() {
+        this.createItemTest();
+
+        List<Item> itemList = itemRepository.findByItemSellStatusNative("테스트 상품 상세 설명1");
+
+        for (Item item : itemList) {
+            log.info("조회된 결과 {}", item);
+        }
     }
 }
