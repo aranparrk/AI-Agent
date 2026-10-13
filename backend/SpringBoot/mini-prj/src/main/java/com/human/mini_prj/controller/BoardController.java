@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
-@RestController
-@RequestMapping("/board")
-@RequiredArgsConstructor
+@Slf4j                       // log 메시지 작성 하는 용도
+@RestController              // Restfull API를 지원하는 컨트롤러(직렬화 / 역직렬화) 기능을 가지고 있음
+@RequestMapping("/board")    // http:/localhost:8111/board/
+@RequiredArgsConstructor     // 생성자를 통한 의존성 주입을 자동 생성
 public class BoardController {
 
-    private final BoardService boardService;
+    private final BoardService boardService; // 의존성 주입
 
     // 게시글 전체 조회
     @GetMapping("/list")
+    // 객체를 반환
     public ResponseEntity<List<BoardResDto>> boardList() {
         return ResponseEntity.ok(boardService.getBoardList());
     }
@@ -69,7 +70,6 @@ public class BoardController {
     public ResponseEntity<Boolean> boardDelete(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(boardService.deleteBoard(id));
-
         } catch (Exception e) {
             log.error("게시글 삭제 실패", e);
             return ResponseEntity.internalServerError().body(false);

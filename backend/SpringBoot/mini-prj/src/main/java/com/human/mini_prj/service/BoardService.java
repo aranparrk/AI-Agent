@@ -24,6 +24,7 @@ public class BoardService {
     private final MemberRepository memberRepository;
 
     // 게시글 전체 조회
+    @Transactional(readOnly = true)
     public List<BoardResDto> getBoardList() {
         List<Board> boardList = boardRepository.findAllByOrderByRegTimeDesc();
         List<BoardResDto> boardResDtoList = new ArrayList<>();
@@ -34,6 +35,7 @@ public class BoardService {
     }
 
     // 게시글 상세 조회
+    @Transactional(readOnly = true)
     public BoardResDto getBoardDetail(Long id) {
         Optional<Board> board = boardRepository.findById(id);
         if (board.isEmpty()) {
