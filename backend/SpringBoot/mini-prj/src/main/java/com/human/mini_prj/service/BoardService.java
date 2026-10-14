@@ -112,8 +112,17 @@ public class BoardService {
 
     // 게시글 목록 페이지네이션 조회 (최신순)
     public PageResDto<BoardResDto> getBoardPage(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
         Page<Board> boardPage = boardRepository.findAll(pageable);
+        Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
+        return new PageResDto<>(boardResDtoPage);
+    }
+
+    // 게시글 검색 & 페이징
+    @Transactional(readOnly = true)
+    public PageResDto<BoardResDto> searchBoard(int page, int size, String keyword) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
+        Page<Board> boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
         Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
         return new PageResDto<>(boardResDtoPage);
     }

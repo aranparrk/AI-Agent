@@ -6,6 +6,7 @@ import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.query.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,5 +84,12 @@ public class BoardController {
     @GetMapping("/list/page")
     public ResponseEntity<PageResDto<BoardResDto>> boardListPage(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(boardService.getBoardPage(page, size));
+    }
+
+    // 게시판 검색 페이징
+    // GET http://localhost:8111/board/search?keyword=스프링&page=0&size=10
+    @GetMapping("/search")
+    public ResponseEntity<PageResDto<BoardResDto>> boardSearch(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam String keyword) {
+        return ResponseEntity.ok(boardService.searchBoard(page, size, keyword));
     }
 }
