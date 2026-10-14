@@ -27,10 +27,10 @@ public class Board {
     @Column(length = 100, nullable = false)
     private String title; // 게시글 제목
 
-    private LocalDateTime regTime;
+    private LocalDateTime regDate;
     @PrePersist
     public void prePersist() {
-        this.regTime = LocalDateTime.now();
+        this.regDate = LocalDateTime.now();
     }
 
     @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계, 지연 전략

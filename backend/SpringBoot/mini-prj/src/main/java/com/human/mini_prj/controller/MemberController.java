@@ -19,7 +19,7 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원 전체 조회
-    @GetMapping("/all")
+    @GetMapping("/list")
     public ResponseEntity<List<MemberResDto>> memberList() {
         return ResponseEntity.ok(memberService.getMemberList());
     }
@@ -47,8 +47,8 @@ public class MemberController {
     }
 
     // 회원 목록 페이지션 조회
-    // GET http://localhost:8111/member/list?page=1&size=10
-    @GetMapping("/list")
+    // GET http://localhost:8111/member/list/page?page=1&size=10
+    @GetMapping("/list/page")
     public ResponseEntity<PageResDto<MemberResDto>> memberListPage(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(memberService.getMemberPage(page, size));
     }

@@ -2,6 +2,7 @@ package com.human.mini_prj.controller;
 
 import com.human.mini_prj.dto.BoardResDto;
 import com.human.mini_prj.dto.BoardWriteReqDto;
+import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -75,5 +76,12 @@ public class BoardController {
             return ResponseEntity.internalServerError().body(false);
 
         }
+    }
+
+    // 보드 목록 페이지션 조회
+    // GET http://localhost:8111/board/list/page?page=1&size=10
+    @GetMapping("/list/page")
+    public ResponseEntity<PageResDto<BoardResDto>> boardListPage(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(boardService.getBoardPage(page, size));
     }
 }

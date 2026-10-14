@@ -2,12 +2,17 @@ package com.human.mini_prj.service;
 
 import com.human.mini_prj.dto.BoardResDto;
 import com.human.mini_prj.dto.BoardWriteReqDto;
+import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.entity.Board;
 import com.human.mini_prj.entity.Member;
 import com.human.mini_prj.repository.BoardRepository;
 import com.human.mini_prj.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +31,7 @@ public class BoardService {
     // 게시글 전체 조회
     @Transactional(readOnly = true)
     public List<BoardResDto> getBoardList() {
-        List<Board> boardList = boardRepository.findAllByOrderByRegTimeDesc();
+        List<Board> boardList = boardRepository.findAllByOrderByRegDateDesc();
         List<BoardResDto> boardResDtoList = new ArrayList<>();
         for (Board board : boardList) {
             boardResDtoList.add(toDto(board));
@@ -102,6 +107,14 @@ public class BoardService {
         }
     }
 
+    // 게시글 목록 페이지네이션 조회 (최신순)
+    public PageResDto<BoardResDto> getBoardPage(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate").descending());
+        Page<Board> boardPage = boardRepository.findAll(pageable);
+        Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
+        return new PageResDto<>(boardResDtoPage);
+    }
+
     // Entity -> Dto
     private BoardResDto toDto(Board board) {
         BoardResDto dto = new BoardResDto();
@@ -110,7 +123,7 @@ public class BoardService {
         dto.setContent(board.getContent());
         dto.setEmail(board.getMember().getEmail());
         dto.setName(board.getMember().getName());
-        dto.setRegDate(board.getRegTime());
+        dto.setRegDate(board.getRegDate());
         return dto;
     }
 }
