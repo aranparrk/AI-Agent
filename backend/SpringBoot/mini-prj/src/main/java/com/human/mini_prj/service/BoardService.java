@@ -120,9 +120,25 @@ public class BoardService {
 
     // 게시글 검색 & 페이징
     @Transactional(readOnly = true)
-    public PageResDto<BoardResDto> searchBoard(int page, int size, String keyword) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
-        Page<Board> boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
+    public PageResDto<BoardResDto> searchBoard(
+            int page, int size, String keyword, String type) {
+
+        Pageable pageable = PageRequest.of(
+                page, size, Sort.by(Sort.Direction.DESC, "regDate")
+        );
+
+        Page<Board> boardPage;
+
+        if ("title".equals(type)) {
+            boardPage = boardRepository.findByTitleContaining(keyword, pageable);
+        } else if ("content".equals(type)) {
+            boardPage = boardRepository.findByContentContaining(keyword, pageable);
+        } else if ("writer".equals(type)) {
+            boardPage = boardRepository.findByMemberNameContaining(keyword, pageable);
+        } else {
+            boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
+        }
+
         Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
         return new PageResDto<>(boardResDtoPage);
     }

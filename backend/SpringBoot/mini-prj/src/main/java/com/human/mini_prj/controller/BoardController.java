@@ -89,7 +89,7 @@ public class BoardController {
     // 게시판 검색 페이징
     // GET http://localhost:8111/board/search?keyword=스프링&page=0&size=10
     @GetMapping("/search")
-    public ResponseEntity<PageResDto<BoardResDto>> boardSearch(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam String keyword) {
-        return ResponseEntity.ok(boardService.searchBoard(page, size, keyword));
+    public ResponseEntity<PageResDto<BoardResDto>> boardSearch(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam String keyword, @RequestParam(required = false) String type) {
+        return ResponseEntity.ok(boardService.searchBoard(page, size, keyword, type));
     }
 }
