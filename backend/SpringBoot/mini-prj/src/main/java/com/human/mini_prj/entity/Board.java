@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "board")
@@ -34,4 +36,7 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계, 지연 전략
     @JoinColumn(name = "member_id") // 외래키
     private Member member; // 작성자 객체를 가져옴
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 }
