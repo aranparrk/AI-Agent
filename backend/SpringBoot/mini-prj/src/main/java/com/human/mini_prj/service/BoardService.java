@@ -40,13 +40,16 @@ public class BoardService {
     }
 
     // 게시글 상세 조회
-    @Transactional(readOnly = true)
     public BoardResDto getBoardDetail(Long id) {
         Optional<Board> board = boardRepository.findById(id);
         if (board.isEmpty()) {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다.");
         }
-        return toDto(board.get());
+        Board viewBoard = board.get();
+
+        viewBoard.setViewCount(viewBoard.getViewCount() + 1);
+
+        return toDto(viewBoard);
     }
 
     // 게시글 작성
@@ -124,6 +127,7 @@ public class BoardService {
         dto.setEmail(board.getMember().getEmail());
         dto.setName(board.getMember().getName());
         dto.setRegDate(board.getRegDate());
+        dto.setViewCount(board.getViewCount());
         return dto;
     }
 }

@@ -39,4 +39,7 @@ public class Board {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
+
+    @Column(name = "view_count", nullable = false)
+    private int viewCount = 0;
 }
