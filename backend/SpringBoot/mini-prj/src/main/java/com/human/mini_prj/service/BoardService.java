@@ -5,7 +5,9 @@ import com.human.mini_prj.dto.BoardWriteReqDto;
 import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.entity.Board;
 import com.human.mini_prj.entity.Member;
+import com.human.mini_prj.repository.BoardLikeRepository;
 import com.human.mini_prj.repository.BoardRepository;
+import com.human.mini_prj.repository.CommentRepository;
 import com.human.mini_prj.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,8 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
+    private final BoardLikeRepository boardLikeRepository;
+    private final CommentRepository commentRepository;
 
     // 게시글 전체 조회
     @Transactional(readOnly = true)
@@ -95,19 +99,22 @@ public class BoardService {
 
     // 게시글 삭제
     public boolean deleteBoard(Long id) {
-        try{
-            Optional<Board> board = boardRepository.findById(id);
-            if(board.isEmpty()){
-                throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
-            }
+        Optional<Board> board = boardRepository.findById(id);
 
-            boardRepository.delete(board.get());
-
-            return true;
-        }catch (Exception e){
-            log.error("게시글 삭제 시 오류 발생 {}", e.getMessage());
-            return false;
+        if (board.isEmpty()) {
+            throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
         }
+
+        // 1. 해당 게시글의 댓글 삭제
+        commentRepository.deleteByBoardId(id);
+
+        // 2. 해당 게시글의 좋아요 삭제
+        boardLikeRepository.deleteByBoardId(id);
+
+        // 3. 게시글 삭제
+        boardRepository.delete(board.get());
+
+        return true;
     }
 
     // 게시글 목록 페이지네이션 조회 (최신순)
@@ -166,6 +173,8 @@ public class BoardService {
         dto.setName(board.getMember().getName());
         dto.setRegDate(board.getRegDate());
         dto.setViewCount(board.getViewCount());
+        dto.setLikeCount(boardLikeRepository.countByBoardId(board.getId()));
+        dto.setCommentCount(commentRepository.countByBoardId(board.getId()));
         return dto;
     }
 }

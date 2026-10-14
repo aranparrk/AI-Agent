@@ -13,4 +13,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByBoard_IdOrderByRegDateAscCommentIdAsc(Long boardId);
 
     Page<Comment> findByMemberEmail(String memberEmail, Pageable pageable);
+
+    long countByBoardId(Long boardId);
+
+    void deleteByBoardId(Long boardId);
 }

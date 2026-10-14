@@ -17,4 +17,6 @@ public class BoardResDto {
     private String name;
     private LocalDateTime regDate;
     private int viewCount;
+    private long likeCount;
+    private long commentCount;
 }
