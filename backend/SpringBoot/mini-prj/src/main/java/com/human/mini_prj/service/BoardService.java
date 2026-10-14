@@ -111,6 +111,7 @@ public class BoardService {
     }
 
     // 게시글 목록 페이지네이션 조회 (최신순)
+    @Transactional(readOnly = true)
     public PageResDto<BoardResDto> getBoardPage(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
         Page<Board> boardPage = boardRepository.findAll(pageable);
@@ -141,6 +142,18 @@ public class BoardService {
 
         Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
         return new PageResDto<>(boardResDtoPage);
+    }
+
+    // 내가 쓴 게시글 조회
+    @Transactional(readOnly = true)
+    public PageResDto<BoardResDto> getMyBoardPage(String email, int page, int size) {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isEmpty()) {
+            throw new IllegalArgumentException("회원이 존재 하지 않습니다.");
+        }
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
+        Page<Board> boardPage = boardRepository.findByMemberEmail(email, pageable);
+        return new PageResDto<>(boardPage.map(this::toDto));
     }
 
     // Entity -> Dto

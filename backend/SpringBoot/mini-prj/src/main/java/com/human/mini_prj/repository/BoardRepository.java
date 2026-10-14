@@ -21,4 +21,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     // 작성자로 검색
     Page<Board> findByMemberNameContaining(String memberName, Pageable pageable);
 
+    // 내가 작성한 글 보기
+    Page<Board> findByMemberEmail(String memberEmail, Pageable pageable);
 }

@@ -1,8 +1,8 @@
 package com.human.mini_prj.controller;
 
-import com.human.mini_prj.dto.MemberResDto;
-import com.human.mini_prj.dto.MemberUpdateReqDto;
-import com.human.mini_prj.dto.PageResDto;
+import com.human.mini_prj.dto.*;
+import com.human.mini_prj.service.BoardService;
+import com.human.mini_prj.service.CommentService;
 import com.human.mini_prj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final BoardService boardService;
+    private final CommentService commentService;
 
     // 회원 전체 조회
     @GetMapping("/list")
@@ -51,5 +53,19 @@ public class MemberController {
     @GetMapping("/list/page")
     public ResponseEntity<PageResDto<MemberResDto>> memberListPage(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(memberService.getMemberPage(page, size));
+    }
+
+    // 내가 쓴 게시글 조회
+    // GET http://localhost:8111/member/{email}/boards?page=0&size=10
+    @GetMapping("/{email}/boards")
+    public ResponseEntity<PageResDto<BoardResDto>> myBoardList(@PathVariable String email, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(boardService.getMyBoardPage(email, page, size));
+    }
+
+    // 내가 쓴 댓글 조회
+    // GET http://localhost:8111/member/{email}/comments?page=0&size=10
+    @GetMapping("/{email}/comments")
+    public ResponseEntity<PageResDto<CommentResDto>> myCommentList(@PathVariable String email, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(commentService.getMyCommentPage(email, page, size));
     }
 }

@@ -2,6 +2,7 @@ package com.human.mini_prj.service;
 
 import com.human.mini_prj.dto.CommentResDto;
 import com.human.mini_prj.dto.CommentWriteReqDto;
+import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.entity.Board;
 import com.human.mini_prj.entity.Comment;
 import com.human.mini_prj.entity.Member;
@@ -10,6 +11,10 @@ import com.human.mini_prj.repository.CommentRepository;
 import com.human.mini_prj.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -95,6 +100,22 @@ public class CommentService {
         }
     }
 
+    // 내가 쓴 댓글 조회
+    @Transactional(readOnly = true)
+    public PageResDto<CommentResDto> getMyCommentPage(String email, int page, int size) {
+        Optional<Member> member = memberRepository.findByEmail(email);
+
+        if  (member.isEmpty()) {
+            throw new IllegalArgumentException("회원이 존재하지 않습니다.");
+        }
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "regDate"));
+
+        Page<Comment> commentPage = commentRepository.findByMemberEmail(email, pageable);
+
+        return new PageResDto<>(commentPage.map(this::toDto));
+    }
+
     // Entity -> DTO
     private CommentResDto toDto(Comment comment) {
         CommentResDto dto = new CommentResDto();
@@ -102,8 +123,7 @@ public class CommentService {
         dto.setBoardId(comment.getBoard().getId());
         dto.setMemberId(comment.getMember().getId());
         dto.setContent(comment.getContent());
-
-
+        dto.setRegDate(comment.getRegDate());
         return dto;
     }
 }
