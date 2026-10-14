@@ -1,12 +1,10 @@
 package com.human.mini_prj.controller;
 
-import com.human.mini_prj.dto.BoardResDto;
-import com.human.mini_prj.dto.BoardWriteReqDto;
-import com.human.mini_prj.dto.PageResDto;
+import com.human.mini_prj.dto.*;
+import com.human.mini_prj.service.BoardLikeService;
 import com.human.mini_prj.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.query.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +17,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService; // 의존성 주입
+    private final BoardLikeService boardLikeService;
 
     // 게시글 전체 조회
     @GetMapping("/list")
@@ -91,5 +90,12 @@ public class BoardController {
     @GetMapping("/search")
     public ResponseEntity<PageResDto<BoardResDto>> boardSearch(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam String keyword, @RequestParam(required = false) String type) {
         return ResponseEntity.ok(boardService.searchBoard(page, size, keyword, type));
+    }
+
+    // 좋아요
+    // POST http://localhost:8111/board/{id}/like
+    @PostMapping("/{id}/like")
+    public ResponseEntity<BoardLikeResDto> boardLike(@PathVariable Long id, @RequestBody BoardLikeReqDto dto) {
+        return ResponseEntity.ok(boardLikeService.toggleLike(id, dto.getEmail()));
     }
 }
