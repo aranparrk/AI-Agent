@@ -1,38 +1,44 @@
 import logo from "./logo.svg";
 import "./App.css";
-import WelcomeProps from "./WelcomeProp";
+import Article from "./Article";
+
+const data = [
+  {
+    title: "정치",
+    contents: "민주당과 국민의 힘이 열심히 싸우고 있어요",
+    writer: "조성봉 기자",
+    date: "2026-10-15 PM 03:12",
+  },
+  {
+    title: "경제",
+    contents: "코스피가 왜 이럴까??",
+    writer: "이현주 기자",
+    date: "2026-10-15 PM 03:13",
+  },
+  {
+    title: "사회",
+    contents: "부산에 상어가 집에를 안가고 있음",
+    writer: "안유진 기자",
+    date: "2026-10-15 PM 03:14",
+  },
+  {
+    title: "문화",
+    contents: "사람들이 책을 읽지 않아서 서점이 망함",
+    writer: "장원영 기자",
+    date: "2026-10-15 PM 03:15",
+  },
+  {
+    title: "스포츠",
+    contents: "엘지가 승리해서 플레이오프 진출",
+    writer: "박해민 기자",
+    date: "2026-10-15 PM 03:15",
+  },
+];
 
 function App() {
-  // 자바스크립트 문법 구간
-  const name = "안유진"; // 표현식 포함 하기
-  // 성별, 나이, 주소 변수를 만들어 화면에 표시해보기
-  const gender = "F";
-  const age = "33";
-  const addr = "충남 아산시";
-  const score = "60";
-
   return (
     // 화면을 그려주는 구간
-    <>
-      <WelcomeProps
-        name="안유진"
-        gender="여자"
-        age={20}
-        addr="충남 아산시"
-      ></WelcomeProps>
-      <WelcomeProps
-        name="장원영"
-        gender="여자"
-        age={22}
-        addr="충남 천안시"
-      ></WelcomeProps>
-      <WelcomeProps
-        name="리즈"
-        gender="여자"
-        age={23}
-        addr="충남 보령시"
-      ></WelcomeProps>
-    </>
+    <>{data && data.map((e, index) => <Article key={index} data={e} />)}</>
   );
 }
 
