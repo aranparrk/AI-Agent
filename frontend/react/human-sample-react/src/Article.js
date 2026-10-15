@@ -7,12 +7,18 @@
 // 구조 분해 사용
 
 const Article = ({ data }) => {
+  const { title, content, name, regDate, likeCount, commentCount } = data;
+
+  const formattedDate = regDate.slice(0, 16).replace("T", " ");
+
   return (
     <>
-      <h1>{data.title}</h1>
-      <p>{data.contents}</p>
-      <p>{data.regDate}</p>
-      <p>{data.writer}</p>
+      <h1>제목 | {title}</h1>
+      <p>내용 | {content}</p>
+      <p>작성자 | {name}</p>
+      <p>작성일 | {formattedDate}</p>
+      <p>좋아요 | {likeCount}</p>
+      <p>댓글수 | {commentCount}</p>
     </>
   );
 };
