@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Article from "./Article";
 import { useState, useEffect } from "react";
+import Say from "./Say";
 
 // const data = [
 //   {
@@ -109,23 +110,29 @@ import { useState, useEffect } from "react";
 // ];
 
 function App() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:8111/board/list")
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("서버에서 받은 데이터 : ", result);
-        setData(result);
-      })
-      .catch((error) => {
-        console.error("API 요청 실패 : ", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8111/board/list")
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       console.log("서버에서 받은 데이터 : ", result);
+  //       setData(result);
+  //     })
+  //     .catch((error) => {
+  //       console.error("API 요청 실패 : ", error);
+  //     });
+  // }, []);
+
+  // return (
+  //   // 화면을 그려주는 구간
+  //   <>{data && data.map((e) => <Article key={e.id} data={e} />)}</>
+  // );
 
   return (
-    // 화면을 그려주는 구간
-    <>{data && data.map((e) => <Article key={e.id} data={e} />)}</>
+    <>
+      <Say></Say>
+    </>
   );
 }
 
