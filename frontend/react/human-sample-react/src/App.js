@@ -3,6 +3,7 @@ import "./App.css";
 import Article from "./Article";
 import { useState, useEffect } from "react";
 import Say from "./Say";
+import InputEvent from "./InputEvent";
 
 // const data = [
 //   {
@@ -131,7 +132,7 @@ function App() {
 
   return (
     <>
-      <Say></Say>
+      <InputEvent></InputEvent>
     </>
   );
 }
