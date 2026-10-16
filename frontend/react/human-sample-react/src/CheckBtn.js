@@ -23,7 +23,7 @@ const CheckBtn = () => {
 
   return (
     <>
-      <p>체크 박스</p>
+      <h3>체크 박스</h3>
       <label>
         <input
           type="checkbox"
@@ -32,6 +32,7 @@ const CheckBtn = () => {
         />
         전체 선택
       </label>
+      <hr />
       {cars.map((car) => (
         <label key={car} style={{ marginRight: "12px" }}>
           <input
