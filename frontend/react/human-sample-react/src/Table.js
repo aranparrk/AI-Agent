@@ -1,7 +1,7 @@
 // 테이블 요소에 이벤트 추가하기
 // 아이디, 이름, 나이, 주소로 구성된 배열 5개 생성
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 const rowData = [
@@ -13,7 +13,12 @@ const rowData = [
 ];
 
 const Table = () => {
-  const [members, setMembers] = useState(rowData);
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    // 서버에 대한 데이터를 비동기로 요청함
+    setMembers(rowData);
+  }, []); // [] 마운트 시작을 의미함
 
   return (
     <table>
