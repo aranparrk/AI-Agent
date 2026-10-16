@@ -4,6 +4,7 @@ import Article from "./Article";
 import { useState, useEffect } from "react";
 import Say from "./Say";
 import InputEvent from "./InputEvent";
+import DropDown from "./DropDown";
 
 // const data = [
 //   {
@@ -132,7 +133,7 @@ function App() {
 
   return (
     <>
-      <InputEvent></InputEvent>
+      <DropDown></DropDown>
     </>
   );
 }
