@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Say from "./Say";
 import InputEvent from "./InputEvent";
 import DropDown from "./DropDown";
+import RadioBtn from "./RadioBtn";
+import CheckBtn from "./CheckBtn";
 
 // const data = [
 //   {
@@ -133,7 +135,7 @@ function App() {
 
   return (
     <>
-      <DropDown></DropDown>
+      <CheckBtn />
     </>
   );
 }
