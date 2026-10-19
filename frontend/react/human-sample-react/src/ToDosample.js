@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 const sample = [
   { id: 1, text: "HTML 연습" },
@@ -19,18 +20,41 @@ const ToDosample = () => {
     setInputText(""); // input 창을 지워 줌
   };
 
+  const onRemove = (id) => {
+    const nextToDos = toDoData.filter((todo) => todo.id !== id);
+    setToDoData(nextToDos);
+  };
+
   return (
-    <>
-      <input
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-      />
-      <button onClick={onClick}>추가</button>
-      <ul>
-        {toDoData && toDoData.map((toDo) => <li key={toDo.id}>{toDo.text}</li>)}
+    <div className="todo-container">
+      <h1>📝 My ToDo List</h1>
+      <p>오늘 할 일을 관리해보세요.</p>
+
+      <div className="todo-input">
+        <input
+          type="text"
+          placeholder="할 일을 입력하세요"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+              onClick();
+            }
+          }}
+        />
+        <button onClick={onClick}>추가</button>
+      </div>
+
+      <ul className="todo-list">
+        {toDoData.map((toDo) => (
+          <li key={toDo.id} onDoubleClick={() => onRemove(toDo.id)}>
+            📌 {toDo.text}
+          </li>
+        ))}
       </ul>
-    </>
+
+      <p className="todo-guide">💡 더블클릭하면 삭제됩니다.</p>
+    </div>
   );
 };
 
