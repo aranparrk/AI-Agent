@@ -8,6 +8,7 @@ import DropDown from "./DropDown";
 import RadioBtn from "./RadioBtn";
 import CheckBtn from "./CheckBtn";
 import Table from "./Table";
+import ToDosample from "./ToDosample";
 
 // const data = [
 //   {
@@ -136,7 +137,7 @@ function App() {
 
   return (
     <>
-      <Table />
+      <ToDosample />
     </>
   );
 }
