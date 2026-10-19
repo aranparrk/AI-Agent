@@ -8,7 +8,7 @@ const sample = [
   { id: 4, text: "리액트프로젝트" },
 ];
 
-const ToDosample = () => {
+const ToDoSample = () => {
   const [toDoData, setToDoData] = useState(() => {
     const storeTodos = localStorage.getItem("todos");
     return storeTodos ? JSON.parse(storeTodos) : sample;
@@ -65,4 +65,4 @@ const ToDosample = () => {
   );
 };
 
-export default ToDosample;
+export default ToDoSample;
