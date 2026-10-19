@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 const sample = [
@@ -9,9 +9,16 @@ const sample = [
 ];
 
 const ToDosample = () => {
-  const [toDoData, setToDoData] = useState(sample); // 상태관리 (랜더링 조건을 만들기 위해서 사용)
+  const [toDoData, setToDoData] = useState(() => {
+    const storeTodos = localStorage.getItem("todos");
+    return storeTodos ? JSON.parse(storeTodos) : sample;
+  }); // 상태관리 (랜더링 조건을 만들기 위해서 사용)
   const [inputText, setInputText] = useState(""); // 입력에 대한 상태관리
   const [nextId, setNextId] = useState(5); // ID증가에 대한 상태관리
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(toDoData));
+  }, [toDoData]);
 
   const onClick = () => {
     const nextToDos = [...toDoData, { id: nextId, text: inputText }];
