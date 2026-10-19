@@ -12,6 +12,7 @@ import ToDoSample from "./ToDoSample";
 import MemberPractice from "./MemberPractice";
 import Count from "./Count.js";
 import Information from "./Information";
+import Average from "./Average";
 
 // const data = [
 //   {
@@ -140,7 +141,7 @@ function App() {
 
   return (
     <>
-      <Information />
+      <Average />
     </>
   );
 }
