@@ -12,7 +12,9 @@ const Average = () => {
   const [list, setList] = useState([]);
   const [number, setNumber] = useState("");
 
-  const onInsert = (e) => {
+  const average = useMemo(() => getAverage(list), [list]);
+
+  const onInsert = () => {
     const nextList = [...list, parseInt(number)];
     setList(nextList);
     setNumber("");
@@ -30,7 +32,7 @@ const Average = () => {
       </label>
       <button onClick={onInsert}>등록</button>
       <ul>{list && list.map((e, index) => <li key={index}>{e}</li>)}</ul>
-      <p>평균값 : {getAverage(list)}</p>
+      <p>평균값 : {average}</p>
     </>
   );
 };
