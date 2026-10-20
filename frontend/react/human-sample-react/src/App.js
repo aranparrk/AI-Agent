@@ -14,6 +14,7 @@ import Count from "./Count.js";
 import Information from "./Information";
 import Average from "./Average";
 import Styled from "./Styled";
+import ColorBtn from "./ColorBtn";
 
 // const data = [
 //   {
@@ -142,7 +143,7 @@ function App() {
 
   return (
     <>
-      <Styled />
+      <ColorBtn />
     </>
   );
 }

@@ -15,22 +15,20 @@ const Button = styled.button`
   padding: 8px;
   box-sizing: border-box;
   font-weight: bold;
-
   &:hover {
     background: rgba(255, 255, 255, 0.5);
   }
-
   ${(props) =>
     props.inverted &&
     css`
       background: none;
       border: 2px solid white;
-
+      color: white;
       &:hover {
         background: white;
         color: black;
       }
-    `}
+    `};
   & + button {
     margin-left: 1rem;
   }
