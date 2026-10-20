@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #eef2f8;
+      }
+
+      .container {
+        width: 500px;
+        box-sizing: border-box;
+        padding: 50px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+      }
+
+      .login {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: #334155;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      input {
+        margin: 0;
+        padding: 0 15px;
+        height: 48px;
+        border: 1px solid #dce3ec;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      .button {
+        margin-top: 20px;
+      }
+
+      button,
+      .button a {
+        height: 50px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .login button {
+        background: #273b60;
+        color: white;
+        border: none;
+      }
+
+      .button a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        color: #273b60;
+        border: 1px solid #cbd5e1;
+        text-decoration: none;
+      }
+      .page-name {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 50px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-name">LOG IN PAGE</div>
+      <form class="login" action="main.html">
+        <label>
+          ID
+          <input type="text" placeholder="이메일을 입력하세요." required />
+        </label>
+
+        <label>
+          비밀번호
+          <input
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            required
+          />
+        </label>
+
+        <button type="submit">LOG IN</button>
+      </form>
+
+      <div class="button">
+        <a href="signup.html">SIGN UP</a>
+      </div>
+    </div>
+  </body>
+</html>
