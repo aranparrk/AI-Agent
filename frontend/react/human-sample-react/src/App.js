@@ -13,6 +13,7 @@ import MemberPractice from "./MemberPractice";
 import Count from "./Count.js";
 import Information from "./Information";
 import Average from "./Average";
+import Styled from "./Styled";
 
 // const data = [
 //   {
@@ -141,7 +142,7 @@ function App() {
 
   return (
     <>
-      <Average />
+      <Styled />
     </>
   );
 }
