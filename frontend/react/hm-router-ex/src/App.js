@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Button from "./components/common/Button";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <>
-      <Button></Button>
+      <SignUp></SignUp>
     </>
   );
 }
