@@ -4,7 +4,7 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
+import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
 
 function App() {

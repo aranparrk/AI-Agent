@@ -7,10 +7,6 @@ const Home = () => {
     navigate(`/profile/${e.target.value}`);
   };
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-  console.log(isLoggedIn);
-
   return (
     <div>
       <h1>여기가 홈 입니다.</h1>
