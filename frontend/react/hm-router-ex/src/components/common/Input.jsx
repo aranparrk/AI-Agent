@@ -25,8 +25,10 @@ const ErrorText = styled.p`
 const Input = ({ label, type = "text", name, error, ...rest }) => {
   return (
     <Wrapper>
-      <Label>{label}</Label>
-      <StyledInput type={type} name={name} {...rest} />
+      <Label>
+        {label}
+        <StyledInput type={type} name={name} {...rest} />
+      </Label>
       <ErrorText>{error}</ErrorText>
     </Wrapper>
   );
