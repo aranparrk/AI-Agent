@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/common/Input";
 import Button from "../components/common/Button";
 import { useState } from "react";
+import AxiosApi from "../api/AxiosApi.jsx";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -28,17 +29,21 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const id = "test";
-  const password = "test1234";
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (username === id && inputPassword === password) {
-      localStorage.setItem("isLoggedIn", "true");
-      navigate("/");
-    } else {
-      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+    try {
+      const response = await AxiosApi.memberLogIn(username, inputPassword);
+
+      if (response.data === true) {
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/home");
+      } else {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+      }
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      alert("로그인 중 오류가 발생했습니다.");
     }
   };
 
@@ -64,9 +69,7 @@ const Login = () => {
           placeholder="비밀번호를 입력하세요"
         />
 
-        <Button type="submit" onClick={() => navigate("/home")}>
-          로그인
-        </Button>
+        <Button type="submit">로그인</Button>
         <Button type="button" onClick={() => navigate("/signup")}>
           회원가입
         </Button>
