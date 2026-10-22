@@ -3,6 +3,7 @@ import Button from "../components/common/Button.jsx";
 import Input from "../components/common/Input.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AxiosApi from "../api/AxiosApi.jsx";
 
 const Container = styled.div`
   display: flex;
@@ -119,17 +120,32 @@ const SignUp = () => {
     setErrors({});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const error = validate(form);
-
     setErrors(error);
 
-    if (Object.keys(error).length === 0) {
+    if (Object.keys(error).length > 0) return;
+
+    try {
+      const response = await AxiosApi.memberSignUp(
+        form.email,
+        form.password,
+        form.name
+      );
+
+      if (response.data === false) {
+        alert("회원가입에 실패했습니다.");
+        return;
+      }
+
       alert(`${form.name}님, 회원가입이 완료되었습니다!`);
       handleReset();
       navigate("/");
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+      alert("회원가입 중 오류가 발생했습니다.");
     }
   };
 

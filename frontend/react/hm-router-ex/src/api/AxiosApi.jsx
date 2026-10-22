@@ -126,17 +126,25 @@ const AxiosApi = {
   // ====================================
   // 댓글 목록 조회 (GET)
   commentList: async (boardId) => {
-    return await axios.get(HM_DOMAIN + `/comment/${boardId}`);
+    return await axios.get(HM_DOMAIN + `/comment/list/${boardId}`);
   },
 
   // 댓글 작성 (POST)
-  commentWrite: async () => {
-    return await axios.get(HM_DOMAIN + `/comment/write`);
+  commentWrite: async (content, boardId, email) => {
+    return await axios.post(HM_DOMAIN + `/comment/write`, {
+      content,
+      boardId,
+      email,
+    });
   },
 
   // 댓글 수정 (PUT)
-  commentUpdate: async (id) => {
-    return await axios.put(HM_DOMAIN + `/comment/update/${id}`);
+  commentUpdate: async (id, content, boardId, email) => {
+    return await axios.put(HM_DOMAIN + `/comment/update/${id}`, {
+      content,
+      boardId,
+      email,
+    });
   },
 
   // 댓글 삭제 (DELETE)
