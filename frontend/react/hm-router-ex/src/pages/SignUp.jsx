@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "../components/common/Button.jsx";
 import Input from "../components/common/Input.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosApi from "../api/AxiosApi.jsx";
 
@@ -28,6 +28,12 @@ const Title = styled.div`
   font-weight: 700;
   margin-bottom: 28px;
   letter-spacing: -0.5px;
+`;
+
+const SuccessMessage = styled.p`
+  color: #2e9e4f;
+  font-size: 12px;
+  margin: 4px 0 8px;
 `;
 
 const fields = [
@@ -73,18 +79,64 @@ const SignUp = () => {
     name: "",
   });
 
+  const [emailStatus, setEmailStatus] = useState("idle");
+
   // 실시간 유효성 검사
   const isEmail = EMAIL_REGEX.test(form.email);
   const isPwd = PWD_REGEX.test(form.password);
-  const isPwdCheck =
-    form.confirmPassword !== "" && form.password === form.confirmPassword;
+  const isPwdCheck = form.password === form.confirmPassword;
   const isName = NAME_REGEX.test(form.name);
 
-  const isAllValid = isEmail && isPwd && isPwdCheck && isName;
+  const isAllValid =
+    isEmail && isPwd && isPwdCheck && isName && emailStatus === "available";
+
+  // 이메일 중복 검사
+  useEffect(() => {
+    if (!isEmail) {
+      setEmailStatus("idle");
+      return;
+    }
+
+    setEmailStatus("checking");
+
+    let cancelled = false;
+
+    const timer = setTimeout(async () => {
+      try {
+        const response = await AxiosApi.memberExist(form.email);
+
+        if (!cancelled) {
+          if (response.data === true) {
+            setEmailStatus("duplicate");
+          } else {
+            setEmailStatus("available");
+          }
+        }
+      } catch (error) {
+        console.error("이메일 중복 확인 실패:", error);
+
+        if (!cancelled) {
+          setEmailStatus("error");
+        }
+      }
+    }, 500);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [form.email, isEmail]);
 
   // 오류 메시지
   const errors = {
-    email: form.email && !isEmail ? "이메일 형식이 올바르지 않습니다." : "",
+    email:
+      form.email && !isEmail
+        ? "이메일 형식이 올바르지 않습니다."
+        : emailStatus === "duplicate"
+        ? "이미 가입된 이메일입니다."
+        : emailStatus === "error"
+        ? "이메일 중복 확인에 실패했습니다."
+        : "",
 
     password:
       form.password && !isPwd
@@ -99,12 +151,18 @@ const SignUp = () => {
     name: form.name && !isName ? "한글 또는 영문 2~10자로 입력하세요." : "",
   };
 
+  // 입력값 변경
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
+
+    if (name === "email") {
+      setEmailStatus("idle");
+    }
   };
 
+  // 초기화
   const handleReset = () => {
     setForm({
       email: "",
@@ -112,8 +170,11 @@ const SignUp = () => {
       confirmPassword: "",
       name: "",
     });
+
+    setEmailStatus("idle");
   };
 
+  // 회원가입
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -149,19 +210,33 @@ const SignUp = () => {
         <Title>회원가입</Title>
 
         {fields.map((field) => (
-          <Input
-            key={field.name}
-            label={field.label}
-            type={field.type}
-            name={field.name}
-            placeholder={field.placeholder}
-            value={form[field.name]}
-            onChange={handleChange}
-            error={errors[field.name]}
-          />
+          <div key={field.name}>
+            <Input
+              label={field.label}
+              type={field.type}
+              name={field.name}
+              placeholder={field.placeholder}
+              value={form[field.name]}
+              onChange={handleChange}
+              error={errors[field.name]}
+            />
+
+            {field.name === "email" &&
+              isEmail &&
+              emailStatus === "checking" && (
+                <SuccessMessage>이메일 중복 확인 중...</SuccessMessage>
+              )}
+
+            {field.name === "email" &&
+              isEmail &&
+              emailStatus === "available" && (
+                <SuccessMessage>사용 가능한 이메일입니다.</SuccessMessage>
+              )}
+          </div>
         ))}
 
         <Button type="submit">가입하기</Button>
+
         <Button type="button" onClick={handleReset}>
           다시 작성
         </Button>
