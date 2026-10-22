@@ -55,39 +55,13 @@ const fields = [
     name: "name",
     placeholder: "이름을 입력하세요",
   },
-  {
-    label: "전화번호",
-    type: "tel",
-    name: "tel",
-    placeholder: "전화번호를 입력하세요",
-  },
 ];
 
-const validate = (form) => {
-  const errors = {};
-
-  if (!form.email.includes("@")) {
-    errors.email = "이메일 형식이 올바르지 않습니다.";
-  }
-
-  if (form.password.length < 8) {
-    errors.password = "비밀번호는 8자 이상이어야 합니다.";
-  }
-
-  if (form.password !== form.confirmPassword) {
-    errors.confirmPassword = "비밀번호가 일치하지 않습니다.";
-  }
-
-  if (form.name.trim() === "") {
-    errors.name = "이름을 입력해 주세요.";
-  }
-
-  if (form.tel.trim() === "") {
-    errors.tel = "전화번호를 입력해 주세요.";
-  }
-
-  return errors;
-};
+// 정규식
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PWD_REGEX =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
+const NAME_REGEX = /^[가-힣a-zA-Z]{2,10}$/;
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -97,10 +71,33 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
     name: "",
-    tel: "",
   });
 
-  const [errors, setErrors] = useState({});
+  // 실시간 유효성 검사
+  const isEmail = EMAIL_REGEX.test(form.email);
+  const isPwd = PWD_REGEX.test(form.password);
+  const isPwdCheck =
+    form.confirmPassword !== "" && form.password === form.confirmPassword;
+  const isName = NAME_REGEX.test(form.name);
+
+  const isAllValid = isEmail && isPwd && isPwdCheck && isName;
+
+  // 오류 메시지
+  const errors = {
+    email: form.email && !isEmail ? "이메일 형식이 올바르지 않습니다." : "",
+
+    password:
+      form.password && !isPwd
+        ? "영문, 숫자, 특수문자 포함 8~20자로 입력하세요."
+        : "",
+
+    confirmPassword:
+      form.confirmPassword && !isPwdCheck
+        ? "비밀번호가 일치하지 않습니다."
+        : "",
+
+    name: form.name && !isName ? "한글 또는 영문 2~10자로 입력하세요." : "",
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -114,19 +111,16 @@ const SignUp = () => {
       password: "",
       confirmPassword: "",
       name: "",
-      tel: "",
     });
-
-    setErrors({});
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const error = validate(form);
-    setErrors(error);
-
-    if (Object.keys(error).length > 0) return;
+    if (!isAllValid) {
+      alert("입력 내용을 확인해 주세요.");
+      return;
+    }
 
     try {
       const response = await AxiosApi.memberSignUp(
@@ -153,19 +147,20 @@ const SignUp = () => {
     <Container>
       <Form noValidate onSubmit={handleSubmit}>
         <Title>회원가입</Title>
-        {fields &&
-          fields.map((field) => (
-            <Input
-              key={field.name}
-              label={field.label}
-              type={field.type}
-              name={field.name}
-              placeholder={field.placeholder}
-              value={form[field.name]}
-              onChange={handleChange}
-              error={errors[field.name]}
-            />
-          ))}
+
+        {fields.map((field) => (
+          <Input
+            key={field.name}
+            label={field.label}
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            value={form[field.name]}
+            onChange={handleChange}
+            error={errors[field.name]}
+          />
+        ))}
+
         <Button type="submit">가입하기</Button>
         <Button type="button" onClick={handleReset}>
           다시 작성
