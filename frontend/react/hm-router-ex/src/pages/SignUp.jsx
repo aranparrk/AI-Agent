@@ -30,12 +30,6 @@ const Title = styled.div`
   letter-spacing: -0.5px;
 `;
 
-const SuccessMessage = styled.p`
-  color: #2e9e4f;
-  font-size: 12px;
-  margin: 4px 0 8px;
-`;
-
 const fields = [
   {
     label: "이메일",
@@ -210,29 +204,21 @@ const SignUp = () => {
         <Title>회원가입</Title>
 
         {fields.map((field) => (
-          <div key={field.name}>
-            <Input
-              label={field.label}
-              type={field.type}
-              name={field.name}
-              placeholder={field.placeholder}
-              value={form[field.name]}
-              onChange={handleChange}
-              error={errors[field.name]}
-            />
-
-            {field.name === "email" &&
-              isEmail &&
-              emailStatus === "checking" && (
-                <SuccessMessage>이메일 중복 확인 중...</SuccessMessage>
-              )}
-
-            {field.name === "email" &&
-              isEmail &&
-              emailStatus === "available" && (
-                <SuccessMessage>사용 가능한 이메일입니다.</SuccessMessage>
-              )}
-          </div>
+          <Input
+            key={field.name}
+            label={field.label}
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            value={form[field.name]}
+            onChange={handleChange}
+            error={errors[field.name]}
+            success={
+              field.name === "email" && isEmail && emailStatus === "available"
+                ? "사용 가능한 이메일입니다."
+                : ""
+            }
+          />
         ))}
 
         <Button type="submit">가입하기</Button>

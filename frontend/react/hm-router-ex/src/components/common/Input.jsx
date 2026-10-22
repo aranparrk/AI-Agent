@@ -16,20 +16,20 @@ const StyledInput = styled.input`
 `;
 
 const ErrorText = styled.p`
-  color: red;
+  color: ${({ $success }) => ($success ? "#2e9e4f" : "red")};
   font-size: 12px;
   min-height: 16px;
   margin: 4px 0 0;
 `;
 
-const Input = ({ label, type = "text", name, error, ...rest }) => {
+const Input = ({ label, type = "text", name, error, success, ...rest }) => {
   return (
     <Wrapper>
       <Label>
         {label}
         <StyledInput type={type} name={name} {...rest} />
       </Label>
-      <ErrorText>{error}</ErrorText>
+      <ErrorText $success={!!success && !error}>{error || success}</ErrorText>
     </Wrapper>
   );
 };
