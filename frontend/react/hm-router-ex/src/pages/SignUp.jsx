@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../components/common/Button.jsx";
 import Input from "../components/common/Input.jsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -88,6 +89,8 @@ const validate = (form) => {
 };
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -126,6 +129,7 @@ const SignUp = () => {
     if (Object.keys(error).length === 0) {
       alert(`${form.name}님, 회원가입이 완료되었습니다!`);
       handleReset();
+      navigate("/");
     }
   };
 

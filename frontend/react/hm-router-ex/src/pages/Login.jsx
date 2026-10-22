@@ -64,7 +64,12 @@ const Login = () => {
           placeholder="비밀번호를 입력하세요"
         />
 
-        <Button type="submit">로그인</Button>
+        <Button type="submit" onClick={() => navigate("/home")}>
+          로그인
+        </Button>
+        <Button type="button" onClick={() => navigate("/signup")}>
+          회원가입
+        </Button>
       </LoginForm>
     </Container>
   );
