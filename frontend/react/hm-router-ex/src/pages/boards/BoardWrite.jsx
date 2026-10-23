@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AxiosApi from "../api/AxiosApi";
-import Button from "../components/common/Button";
-import Input from "../components/common/Input";
+import AxiosApi from "../../api/AxiosApi";
+import Button from "../../components/common/Button";
+import Input from "../../components/common/Input";
 
 const Container = styled.div`
   max-width: 720px;

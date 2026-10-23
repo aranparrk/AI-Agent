@@ -6,8 +6,8 @@ import Profile from "./pages/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
-import BoardList from "./pages/BoardList";
-import BoardWrite from "./pages/BoardWrite";
+import BoardList from "./pages/boards/BoardList";
+import BoardWrite from "./pages/boards/BoardWrite";
 
 function App() {
   return (
