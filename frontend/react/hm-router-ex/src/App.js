@@ -8,6 +8,7 @@ import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
 import BoardList from "./pages/boards/BoardList";
 import BoardWrite from "./pages/boards/BoardWrite";
+import BoardDetail from "./pages/boards/BoardDetail";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/board" element={<BoardList />} />
             <Route path="/board/write" element={<BoardWrite />} />
+            <Route path="/board/:boardId" element={<BoardDetail />} />
 
             <Route path="/about" element={<About />} />
             <Route path="/profile/:name" element={<Profile />} />

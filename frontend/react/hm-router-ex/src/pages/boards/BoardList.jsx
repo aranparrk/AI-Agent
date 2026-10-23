@@ -87,9 +87,9 @@ const BoardList = () => {
         <List>
           {boards.map((board) => (
             <BoardItem
-              key={board.boardId}
+              key={board.id}
               board={board}
-              onClick={handleItemClick}
+              onClick={() => handleItemClick(board.id)}
             />
           ))}
         </List>
