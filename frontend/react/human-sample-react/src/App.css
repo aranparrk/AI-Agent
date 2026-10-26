@@ -1,0 +1,134 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+/* 전체 배경 */
+body {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+/* ToDo 카드 */
+.todo-container {
+  width: 450px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* 제목 */
+.todo-container h1 {
+  color: #ffffff;
+}
+
+/* 입력창 */
+.todo-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+/* 추가 버튼 */
+.todo-input button {
+  padding: 12px 20px;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.todo-input button:hover {
+  background-color: #6d28d9;
+}
+
+/* 할 일 목록 */
+.todo-list li {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.todo-list li:hover {
+  background-color: #38304d;
+}
+
+/* 안내 문구 */
+.todo-guide {
+  color: #999;
+  font-size: 12px;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  width: 100%;
+}
+
+.todo-input input {
+  flex: 1;
+  min-width: 0;
+}
