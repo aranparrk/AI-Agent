@@ -1,6 +1,7 @@
 package com.human.mini_prj.entity;
 // 엔티티(Entity) : 데이터베이스의 테이블에 대응하는 클래스이며, @Entity가 붙은 클래스는 JPA에서 관리하여 엔티티
 
+import com.human.mini_prj.constant.Authority;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,12 @@ public class Member {
 
     @PrePersist                                          // DB에 INSERT 되기 전에 실행되는 메서드
     public void prePersist() {
+
         this.regDate = LocalDateTime.now();              // 현재 날짜 및 시간으로 초기화
+        this.authority = Authority.ROLE_USER;
     }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Authority authority;
 }

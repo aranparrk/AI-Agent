@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberUpdateReqDto {
-    private String email;
     private String name;
     private String image;
 }
