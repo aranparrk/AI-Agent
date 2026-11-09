@@ -7,6 +7,9 @@ import com.human.mini_prj.entity.Member;
 import com.human.mini_prj.repository.BoardLikeRepository;
 import com.human.mini_prj.repository.BoardRepository;
 import com.human.mini_prj.repository.MemberRepository;
+import com.human.mini_prj.security.SecurityUtil;
+import com.human.mini_prj.exception.CustomException;
+import org.springframework.http.HttpStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,9 @@ public class BoardLikeService {
     private final MemberRepository memberRepository;
 
     public BoardLikeResDto toggleLike(Long boardId, String email) {
+        if (!SecurityUtil.currentEmail().equals(email)) {
+            throw new CustomException(HttpStatus.FORBIDDEN, "FORBIDDEN", "본인의 좋아요만 변경할 수 있습니다.");
+        }
         Optional<Board> board = boardRepository.findById(boardId);
         Optional<Member> member = memberRepository.findByEmail(email);
         boolean liked;

@@ -10,9 +10,10 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class CommentResDto {
-    private Long memberId;
     private Long boardId;
-    private String content;
     private Long commentId;
+    private String content;
+    private String email;
+    private String name;
     private LocalDateTime regDate;
 }

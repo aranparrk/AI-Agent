@@ -10,5 +10,4 @@ import lombok.Setter;
 public class CommentWriteReqDto {
     private String content;
     private Long boardId;
-    private String email;
 }

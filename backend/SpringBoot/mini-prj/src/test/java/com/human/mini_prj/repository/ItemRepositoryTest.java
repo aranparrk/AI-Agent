@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
+@org.springframework.test.context.ActiveProfiles("test")
 @SpringBootTest
 class ItemRepositoryTest {
     @Autowired
