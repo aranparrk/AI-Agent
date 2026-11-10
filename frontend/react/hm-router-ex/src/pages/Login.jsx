@@ -35,16 +35,17 @@ const Login = () => {
     try {
       const response = await AxiosApi.memberLogIn(username, inputPassword);
 
-      if (response.data === true) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("email", username);
-        navigate("/home");
-      } else {
-        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-      }
+      // 응답: { grantType, accessToken, accessTokenExpiresIn, refreshToken, refreshTokenExpiresIn }
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("email", username); // 화면 표시용 (내 댓글 삭제 버튼 등)
+      localStorage.setItem("isLogin", "TRUE");
+      navigate("/home", { replace: true }); // 뒤로가기로 로그인 화면에 다시 오지 않도록
     } catch (error) {
       console.error("로그인 실패:", error);
-      alert("로그인 중 오류가 발생했습니다.");
+      alert(
+        error.response?.data?.message ?? "이메일 또는 비밀번호가 틀립니다."
+      );
     }
   };
 
