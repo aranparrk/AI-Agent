@@ -1,6 +1,5 @@
 package com.human.mini_prj.security;
 
-import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,14 +21,9 @@ public class JwtFilter extends OncePerRequestFilter {   // @Component 붙이지 
         String header = req.getHeader(HttpHeaders.AUTHORIZATION);
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
-            if (tokenProvider.validate(token)) {
-                try {
-                    SecurityContextHolder.getContext()
-                            .setAuthentication(tokenProvider.getAuthentication(token));
-                } catch (JwtException | IllegalArgumentException e) {
-                    // 검증 직후 만료되는 토큰도 인증 실패로 처리한다.
-                    SecurityContextHolder.clearContext();
-                }
+            if (tokenProvider.validate(token, TokenProvider.ACCESS)) {
+                SecurityContextHolder.getContext()
+                        .setAuthentication(tokenProvider.getAuthentication(token));
             }
         }
         chain.doFilter(req, res);
