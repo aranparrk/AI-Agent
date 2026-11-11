@@ -154,6 +154,25 @@ const AxiosApi = {
   commentDelete: async (id) => {
     return await AxiosInstance.delete(`/comment/${id}`);
   },
+
+  // ====================================
+  // chat controller
+  // ====================================
+
+  // 채팅방 생성 (POST)
+  chatCreate: async (name) => {
+    return await AxiosInstance.post(`/chat/new`, { name });
+  },
+
+  // 채팅방 목록 (GET)
+  chatList: async () => {
+    return await AxiosInstance.get(`/chat/list`);
+  },
+
+  // 채팅방 정보 (GET)
+  chatRoom: async (roomId) => {
+    return await AxiosInstance.get(`/chat/room/${roomId}`);
+  },
 };
 
 export default AxiosApi;

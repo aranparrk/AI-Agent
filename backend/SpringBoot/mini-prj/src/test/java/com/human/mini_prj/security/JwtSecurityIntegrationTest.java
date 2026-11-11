@@ -75,6 +75,34 @@ class JwtSecurityIntegrationTest {
     }
 
     @Test
+    void reissueUsesRefreshTokenBodyAndLogoutRevokesIt() throws Exception {
+        signupAndLogin("refresh@example.com");
+        var login = mvc.perform(post("/auth/login").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\":\"refresh@example.com\",\"pwd\":\"password\"}"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        String refreshToken = mapper.readTree(login).get("refreshToken").asString();
+
+        var response = mvc.perform(post("/auth/reissue").contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(java.util.Map.of("refreshToken", refreshToken))))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken").isString())
+                .andExpect(jsonPath("$.refreshToken").isString())
+                .andReturn().getResponse().getContentAsString();
+        var renewed = mapper.readTree(response);
+        assertNotEquals(refreshToken, renewed.get("refreshToken").asString());
+
+        mvc.perform(post("/auth/logout")
+                .header("Authorization", "Bearer " + renewed.get("accessToken").asString()))
+                .andExpect(status().isNoContent());
+        mvc.perform(post("/auth/reissue").contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(java.util.Map.of(
+                        "refreshToken", renewed.get("refreshToken").asString()))))
+                .andExpect(status().isUnauthorized());
+        mvc.perform(post("/auth/reissue").contentType(MediaType.APPLICATION_JSON).content("{}"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
     void memberChangesUseAuthenticatedIdentity() throws Exception {
         String owner = signupAndLogin("member-owner@example.com");
         String stranger = signupAndLogin("member-stranger@example.com");
@@ -101,8 +129,8 @@ class JwtSecurityIntegrationTest {
         mvc.perform(post("/board/write").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isUnauthorized());
         String secret = Encoders.BASE64.encode(Jwts.SIG.HS512.key().build().getEncoded());
-        var other = new TokenProvider(secret, 3600000);
-        var expired = new TokenProvider(secret, -60000);
+        var other = new TokenProvider(secret, 3600000, 86400000);
+        var expired = new TokenProvider(secret, -60000, 86400000);
         for (String token : new String[]{"broken", other.createToken("x@example.com", Authority.ROLE_USER).accessToken(),
                 expired.createToken("x@example.com", Authority.ROLE_USER).accessToken()}) {
             mvc.perform(get("/member/list").header("Authorization", "Bearer " + token))
