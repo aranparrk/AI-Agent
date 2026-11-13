@@ -173,6 +173,11 @@ const AxiosApi = {
   chatRoom: async (roomId) => {
     return await AxiosInstance.get(`/chat/room/${roomId}`);
   },
+
+  // 카카오 로그인
+  kakaoLogin: async (code) => {
+    return await AxiosInstance.post(`/auth/kakao`, { code });
+  },
 };
 
 export default AxiosApi;

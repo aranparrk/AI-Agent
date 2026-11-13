@@ -23,6 +23,25 @@ const LoginForm = styled.form`
   box-sizing: border-box;
 `;
 
+const KakaoBtn = styled.button`
+  width: 100%;
+  height: 50px;
+  color: #191919;
+  background-color: #fee500; /* 카카오 노란색 */
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+`;
+
+// 카카오 인가 코드 요청 주소 (client_id = REST API 키, 공개돼도 되는 값)
+const KAKAO_AUTH_URL =
+  "https://kauth.kakao.com/oauth/authorize?response_type=code" +
+  `&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}` +
+  "&redirect_uri=" +
+  encodeURIComponent(process.env.REACT_APP_KAKAO_REDIRECT_URI);
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
@@ -72,6 +91,12 @@ const Login = () => {
         />
 
         <Button type="submit">로그인</Button>
+        <KakaoBtn
+          type="button"
+          onClick={() => (window.location.href = KAKAO_AUTH_URL)}
+        >
+          카카오로 로그인
+        </KakaoBtn>
         <Button type="button" onClick={() => navigate("/signup")}>
           회원가입
         </Button>
