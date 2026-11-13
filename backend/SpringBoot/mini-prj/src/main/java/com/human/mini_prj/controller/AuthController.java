@@ -36,13 +36,11 @@ public class AuthController {
     public ResponseEntity<TokenDto> login(@RequestBody LoginReqDto dto) {
         return ResponseEntity.ok(authService.login(dto.getEmail(), dto.getPwd()));
     }
-
     // 재발급
     @PostMapping("/reissue")
     public ResponseEntity<TokenDto> reissue(@RequestBody ReissueReqDto dto) {
         return ResponseEntity.ok(authService.reissue(dto.refreshToken()));
     }
-
     // 로그아웃
     @PostMapping("/logout")
     public ResponseEntity<Void> logout() {
