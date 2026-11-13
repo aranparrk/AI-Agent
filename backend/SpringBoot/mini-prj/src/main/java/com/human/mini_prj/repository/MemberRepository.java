@@ -1,5 +1,6 @@
 package com.human.mini_prj.repository;
 
+import com.human.mini_prj.constant.Provider;
 import com.human.mini_prj.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByEmail(String email); // SQL : SELECT * FROM member WHERE email = ?
     boolean existsByEmail(String email); // SQL : SELECT COUNT(*) FROM member WHERE email = ?
     Optional<Member> findByEmailAndPwd(String email, String password); // SQL : SELECT * FROM MEMBER WHERE EMAIL = ? AND PWD = ?
+    Optional<Member> findByProviderAndProviderId(Provider provider, String providerId);
 
     // 1. 이름이 정확히 일치하는 회원 목록 조회
     List<Member> findByName(String name);

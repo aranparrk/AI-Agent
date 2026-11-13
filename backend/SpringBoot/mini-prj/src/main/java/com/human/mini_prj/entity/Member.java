@@ -2,6 +2,7 @@ package com.human.mini_prj.entity;
 // 엔티티(Entity) : 데이터베이스의 테이블에 대응하는 클래스이며, @Entity가 붙은 클래스는 JPA에서 관리하여 엔티티
 
 import com.human.mini_prj.constant.Authority;
+import com.human.mini_prj.constant.Provider;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class Member {
     @Column(length = 100)                               // 이름 필드 길이 제한
     private String name;
 
-    @Column(nullable = false)                           // 비밀번호 필수 필드
+    @Column(nullable = true)                           // 비밀번호 필수 필드
     private String pwd;                                 // 비밀번호 저장 시 해시 암호화 적용 필요
 
     @Column(unique = true, length = 150)                // 이메일 유니크 제약 조건 및 길이 제한
@@ -36,14 +37,24 @@ public class Member {
 
     private LocalDateTime regDate;                      // java.util.Date 대신 Java 8 날짜 / 시간 API 사용
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Authority authority;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Provider provider;
+
+    @Column(length = 100)
+    private String providerId; // 카카오 회원 번호 (카카오 회원 식별 번호)
+
     @PrePersist                                          // DB에 INSERT 되기 전에 실행되는 메서드
     public void prePersist() {
 
         this.regDate = LocalDateTime.now();              // 현재 날짜 및 시간으로 초기화
         this.authority = Authority.ROLE_USER;
+        if (this.provider == null) this.provider = Provider.LOCAL; // 일반가입은 LOCAL
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private Authority authority;
+
 }
