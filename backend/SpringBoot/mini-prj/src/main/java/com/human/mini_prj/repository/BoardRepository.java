@@ -1,27 +1,16 @@
 package com.human.mini_prj.repository;
 
 import com.human.mini_prj.entity.Board;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    List<Board> findAllByOrderByRegDateDesc();
-
-    // 제목 & 내용으로 검색
+    List<Board> findAllByOrderByRegTimeDesc();
+    // 제목 또는 내용에 키워드가 포함된 게시글 (페이지네이션)
+    // SQL : where title like %?% or content like %?%
     Page<Board> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
-
-    // 제목으로 검색
-    Page<Board> findByTitleContaining(String title, Pageable pageable);
-
-    // 내용으로 검색
-    Page<Board> findByContentContaining(String content, Pageable pageable);
-
-    // 작성자로 검색
-    Page<Board> findByMemberNameContaining(String memberName, Pageable pageable);
-
-    // 내가 작성한 글 보기
-    Page<Board> findByMemberEmail(String memberEmail, Pageable pageable);
 
 }

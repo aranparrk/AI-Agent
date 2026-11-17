@@ -6,7 +6,6 @@ import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.entity.Board;
 import com.human.mini_prj.entity.Member;
 import com.human.mini_prj.repository.BoardRepository;
-import com.human.mini_prj.repository.BoardLikeRepository;
 import com.human.mini_prj.repository.CommentRepository;
 import com.human.mini_prj.repository.MemberRepository;
 import com.human.mini_prj.security.SecurityUtil;
@@ -30,12 +29,11 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
-    private final BoardLikeRepository boardLikeRepository;
     private final CommentRepository commentRepository;
 
     // 게시글 전체 조회 (최신순)
     public List<BoardResDto> getBoardList() {
-        List<Board> boardList = boardRepository.findAllByOrderByRegDateDesc();
+        List<Board> boardList = boardRepository.findAllByOrderByRegTimeDesc();
         List<BoardResDto> boardResDtoList = new ArrayList<>();
         for (Board board : boardList) {
             boardResDtoList.add(toDto(board));
@@ -50,9 +48,7 @@ public class BoardService {
         if (board.isEmpty()) {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다.");
         }
-        Board viewBoard = board.get();
-        viewBoard.setViewCount(viewBoard.getViewCount() + 1);
-        return toDto(viewBoard);
+        return toDto(board.get());
     }
 
     // 게시글 작성
@@ -90,14 +86,13 @@ public class BoardService {
 
     }
 
-    // 게시글 삭제: 게시글 id로 글 삭제
+    // 게시글 삭제
     public boolean deleteBoard(Long id) {
         try {
             Board board = boardRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.: " + id));
             checkWriter(board.getMember());
-            commentRepository.deleteByBoardId(id);
-            boardLikeRepository.deleteByBoardId(id);
+            commentRepository.deleteByBoardId(id);   // 댓글(FK)을 먼저 지워야 게시글 삭제 가능
             boardRepository.delete(board);
             return true;
         } catch (Exception e) {
@@ -108,39 +103,18 @@ public class BoardService {
 
     // 게시글 목록 페이지네이션 조회 (최신순)
     public PageResDto<BoardResDto> getBoardPage(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("regDate").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("regTime").descending());
         Page<Board> boardPage = boardRepository.findAll(pageable);
         Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
         return new PageResDto<>(boardResDtoPage);
     }
 
-    // 기존 검색 API의 인자와 검색 유형 유지
-    public PageResDto<BoardResDto> searchBoard(int page, int size, String keyword, String type) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("regDate").descending());
-        Page<Board> boardPage;
-        if ("title".equals(type)) {
-            boardPage = boardRepository.findByTitleContaining(keyword, pageable);
-        } else if ("content".equals(type)) {
-            boardPage = boardRepository.findByContentContaining(keyword, pageable);
-        } else if ("writer".equals(type)) {
-            boardPage = boardRepository.findByMemberNameContaining(keyword, pageable);
-        } else {
-            boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
-        }
-        return new PageResDto<>(boardPage.map(this::toDto));
-    }
-
+    // 제목 또는 내용에 키워드 포함
     public PageResDto<BoardResDto> searchBoard(String keyword, int page, int size) {
-        return searchBoard(page, size, keyword, null);
-    }
-
-    @Transactional(readOnly = true)
-    public PageResDto<BoardResDto> getMyBoardPage(String email, int page, int size) {
-        if (!memberRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email);
-        }
-        Pageable pageable = PageRequest.of(page, size, Sort.by("regDate").descending());
-        return new PageResDto<>(boardRepository.findByMemberEmail(email, pageable).map(this::toDto));
+        Pageable pageable = PageRequest.of(page, size, Sort.by("regTime").descending());
+        Page<Board> boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
+        Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
+        return new PageResDto<>(boardResDtoPage);
     }
 
     // 로그인 사용자 == 작성자 확인
@@ -153,15 +127,12 @@ public class BoardService {
     // Entity -> Dto
     private BoardResDto toDto(Board board) {
         BoardResDto dto = new BoardResDto();
-        dto.setId(board.getId());
+        dto.setBoardId(board.getId());
         dto.setTitle(board.getTitle());
         dto.setContent(board.getContent());
         dto.setEmail(board.getMember().getEmail());
         dto.setName(board.getMember().getName());
-        dto.setRegDate(board.getRegDate());
-        dto.setViewCount(board.getViewCount());
-        dto.setLikeCount(boardLikeRepository.countByBoardId(board.getId()));
-        dto.setCommentCount(commentRepository.countByBoardId(board.getId()));
+        dto.setRegDate(board.getRegTime());
         return dto;
     }
 
