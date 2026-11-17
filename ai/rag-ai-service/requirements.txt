@@ -1,0 +1,4 @@
+# 1차시
+fastapi
+uvicorn[standard]
+pydantic
