@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     # Spring과 동일한 타입으로 지정
     service_token: str
 
-    rag_engine = str = "stub"
+    rag_engine: str = "stub"
 
     # 청크 분할
     chunk_size: int = 500
