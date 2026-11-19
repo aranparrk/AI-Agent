@@ -5,6 +5,7 @@ import com.human.mini_prj.dto.BoardWriteReqDto;
 import com.human.mini_prj.dto.PageResDto;
 import com.human.mini_prj.entity.Board;
 import com.human.mini_prj.entity.Member;
+import com.human.mini_prj.repository.BoardLikeRepository;
 import com.human.mini_prj.repository.BoardRepository;
 import com.human.mini_prj.repository.CommentRepository;
 import com.human.mini_prj.repository.MemberRepository;
@@ -30,6 +31,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
     private final CommentRepository commentRepository;
+    private final BoardLikeRepository boardLikeRepository;
 
     // 게시글 전체 조회 (최신순)
     public List<BoardResDto> getBoardList() {
@@ -48,7 +50,9 @@ public class BoardService {
         if (board.isEmpty()) {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다.");
         }
-        return toDto(board.get());
+        Board foundBoard = board.get();
+        foundBoard.increaseViewCount();
+        return toDto(foundBoard);
     }
 
     // 게시글 작성
@@ -93,6 +97,7 @@ public class BoardService {
                     .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.: " + id));
             checkWriter(board.getMember());
             commentRepository.deleteByBoardId(id);   // 댓글(FK)을 먼저 지워야 게시글 삭제 가능
+            boardLikeRepository.deleteByBoardId(id);
             boardRepository.delete(board);
             return true;
         } catch (Exception e) {
@@ -109,12 +114,32 @@ public class BoardService {
         return new PageResDto<>(boardResDtoPage);
     }
 
-    // 제목 또는 내용에 키워드 포함
-    public PageResDto<BoardResDto> searchBoard(String keyword, int page, int size) {
+    public PageResDto<BoardResDto> searchBoard(int page, int size, String keyword, String type) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("regTime").descending());
-        Page<Board> boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
-        Page<BoardResDto> boardResDtoPage = boardPage.map(this::toDto);
-        return new PageResDto<>(boardResDtoPage);
+        Page<Board> boardPage;
+        if ("title".equals(type)) {
+            boardPage = boardRepository.findByTitleContaining(keyword, pageable);
+        } else if ("content".equals(type)) {
+            boardPage = boardRepository.findByContentContaining(keyword, pageable);
+        } else if ("writer".equals(type)) {
+            boardPage = boardRepository.findByMemberNameContaining(keyword, pageable);
+        } else {
+            boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
+        }
+        return new PageResDto<>(boardPage.map(this::toDto));
+    }
+
+    public PageResDto<BoardResDto> searchBoard(String keyword, int page, int size) {
+        return searchBoard(page, size, keyword, null);
+    }
+
+    @Transactional(readOnly = true)
+    public PageResDto<BoardResDto> getMyBoardPage(String email, int page, int size) {
+        if (!memberRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("해당 회원이 존재하지 않습니다: " + email);
+        }
+        Pageable pageable = PageRequest.of(page, size, Sort.by("regTime").descending());
+        return new PageResDto<>(boardRepository.findByMemberEmail(email, pageable).map(this::toDto));
     }
 
     // 로그인 사용자 == 작성자 확인
@@ -133,6 +158,9 @@ public class BoardService {
         dto.setEmail(board.getMember().getEmail());
         dto.setName(board.getMember().getName());
         dto.setRegDate(board.getRegTime());
+        dto.setViewCount(board.getViewCount());
+        dto.setLikeCount(boardLikeRepository.countByBoardId(board.getId()));
+        dto.setCommentCount(commentRepository.countByBoardId(board.getId()));
         return dto;
     }
 

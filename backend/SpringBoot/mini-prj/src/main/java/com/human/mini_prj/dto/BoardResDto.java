@@ -16,5 +16,7 @@ public class BoardResDto {
     private String email;
     private String name;
     private int viewCount;
+    private long likeCount;
+    private long commentCount;
     private LocalDateTime regDate;
 }
