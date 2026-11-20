@@ -26,7 +26,7 @@ class DeleteResponse(CamelModel):
     deleted: int
 
 # 사용자 질문 및 MySQL 기반 검색 허용 목록
-class QueryResquest(CamelModel):
+class QueryRequest(CamelModel):
     question: str = Field(min_length=1, max_length=500)
     # Spring이 MySQL에서 만든 READY 허용목록, 비어 있으면 검색하지 않고 abstain
     board_ids: list[int] = Field(default_factory=list, max_length=10_000)
