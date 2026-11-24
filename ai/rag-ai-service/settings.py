@@ -8,8 +8,9 @@ class Settings(BaseSettings):
     service_token: str
 
     rag_engine: str = "stub"
+    max_rewrites: int = 1 # 검색 실패 시 질문 재작성 최대 횟수
 
-    # 청크 분할
+    # 청크 분할환
     chunk_size: int = 500
     chunk_overlap: int = 8
 
