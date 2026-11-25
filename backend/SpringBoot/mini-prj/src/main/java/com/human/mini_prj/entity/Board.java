@@ -1,6 +1,7 @@
 package com.human.mini_prj.entity;
 // 게시글 작성
 
+import com.human.mini_prj.constant.IndexStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +39,14 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계, 지연 전략
     @JoinColumn(name = "member_id")  // 외래키
-    private Member member;  // 작성자 객체를 가져옴
+    private Member member;  // 작성자 객체를 가져옴구
+
+    @Enumerated(EnumType.STRING)
+    private IndexStatus indexStatus = IndexStatus.INDEXING;
+
+    @Column(length = 500)
+    private String indexError; // 색인 실패 사유
+
+    private LocalDateTime indexedAt; // 마지막 색인 성공 시각
 
 }
