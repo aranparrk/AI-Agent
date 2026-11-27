@@ -49,4 +49,5 @@ public class Board {
 
     private LocalDateTime indexedAt; // 마지막 색인 성공 시각
 
+
 }

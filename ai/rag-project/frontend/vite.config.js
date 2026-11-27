@@ -1,0 +1,12 @@
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+
+const proxy = {
+  '/api': 'http://127.0.0.1:8112',
+}
+
+export default defineConfig({
+  plugins: [react()],
+  server: { port: 5175, strictPort: true, proxy },
+  preview: { port: 5175, strictPort: true, proxy },
+})

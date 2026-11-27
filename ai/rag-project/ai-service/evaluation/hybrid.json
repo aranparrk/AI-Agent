@@ -1,0 +1,198 @@
+{
+  "top_k": 4,
+  "retrieval": "hybrid",
+  "hit_rate": 1.0,
+  "mrr": 0.9615,
+  "out_of_scope_abstention": 0.5,
+  "cases": [
+    {
+      "question": "버튼을 빠르게 세 번 누를 때 직전 값으로 카운터를 올리려면?",
+      "expected": [
+        "react-useState"
+      ],
+      "retrieved": [
+        "react-useState",
+        "react-useEffect",
+        "react-useRef"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "useState의 초깃값 계산 함수는 언제 전달하는 게 좋아?",
+      "expected": [
+        "react-useState"
+      ],
+      "retrieved": [
+        "react-useState",
+        "react-thinking-in-react",
+        "react-useEffect"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "컴포넌트가 사라질 때 구독을 해제하려면 어느 훅을 사용해?",
+      "expected": [
+        "react-useEffect"
+      ],
+      "retrieved": [
+        "react-useEffect",
+        "react-useRef",
+        "react-thinking-in-react",
+        "react-sharing-state-between-components"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "외부 시스템과 동기화하는 Effect의 의존성 배열은 어떻게 작성해?",
+      "expected": [
+        "react-useEffect"
+      ],
+      "retrieved": [
+        "react-useEffect",
+        "fastapi-dependencies"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "input DOM 노드에 포커스를 주려면 어떤 React 훅을 써?",
+      "expected": [
+        "react-useRef"
+      ],
+      "retrieved": [
+        "react-useRef",
+        "react-thinking-in-react",
+        "react-useState",
+        "react-useEffect"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "렌더링을 발생시키지 않고 타이머 ID를 기억하려면?",
+      "expected": [
+        "react-useRef"
+      ],
+      "retrieved": [
+        "react-useRef",
+        "react-useState",
+        "react-useEffect",
+        "react-thinking-in-react"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "화면에서 필요한 최소한의 상태를 어떻게 정해?",
+      "expected": [
+        "react-thinking-in-react"
+      ],
+      "retrieved": [
+        "react-thinking-in-react",
+        "react-useState",
+        "react-useEffect"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "두 자식 컴포넌트에서 같은 상태를 공유하려면 어디에 둬야 해?",
+      "expected": [
+        "react-sharing-state-between-components"
+      ],
+      "retrieved": [
+        "react-sharing-state-between-components",
+        "react-thinking-in-react",
+        "react-useRef"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "주소의 item_id를 정수로 받으려면 어떻게 선언해?",
+      "expected": [
+        "fastapi-path-params"
+      ],
+      "retrieved": [
+        "fastapi-body",
+        "fastapi-path-params",
+        "fastapi-response-model",
+        "react-useEffect"
+      ],
+      "rank": 2
+    },
+    {
+      "question": "FastAPI가 JSON 요청을 검사하도록 Pydantic 모델을 연결하려면?",
+      "expected": [
+        "fastapi-body"
+      ],
+      "retrieved": [
+        "fastapi-body",
+        "fastapi-response-model",
+        "react-useRef",
+        "fastapi-cors"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "여러 FastAPI 엔드포인트에 공통 로직을 주입하려면?",
+      "expected": [
+        "fastapi-dependencies"
+      ],
+      "retrieved": [
+        "fastapi-dependencies",
+        "fastapi-path-params"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "다른 포트의 프런트에서 API를 호출하려면 CORS를 어떻게 열어?",
+      "expected": [
+        "fastapi-cors"
+      ],
+      "retrieved": [
+        "fastapi-cors",
+        "fastapi-dependencies"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "응답 JSON에서 비밀번호 같은 필드를 제외하려면 어떻게 해?",
+      "expected": [
+        "fastapi-response-model"
+      ],
+      "retrieved": [
+        "fastapi-response-model",
+        "react-useEffect",
+        "react-thinking-in-react",
+        "fastapi-cors"
+      ],
+      "rank": 1
+    },
+    {
+      "question": "서울에서 김치볶음밥 맛있게 만드는 법",
+      "expected": [],
+      "retrieved": [
+        "react-useEffect",
+        "react-thinking-in-react",
+        "react-sharing-state-between-components"
+      ],
+      "rank": null
+    },
+    {
+      "question": "자전거 체인 오일은 언제 발라?",
+      "expected": [],
+      "retrieved": [],
+      "rank": null
+    },
+    {
+      "question": "조선 시대 최초의 왕은 누구야?",
+      "expected": [],
+      "retrieved": [],
+      "rank": null
+    },
+    {
+      "question": "태양계 행성들의 공전 주기를 비교해줘",
+      "expected": [],
+      "retrieved": [
+        "react-useEffect"
+      ],
+      "rank": null
+    }
+  ]
+}

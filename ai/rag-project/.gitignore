@@ -1,0 +1,12 @@
+.idea/
+.DS_Store
+__pycache__/
+.venv/
+.env
+*.sqlite3
+*.sqlite3-journal
+/ai-service/data/raw/
+/ai-service/data/processed/
+/ai-service/data/qdrant/
+/ai-service/data/index.json
+/ai-service/data/index.tmp

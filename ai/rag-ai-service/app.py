@@ -46,8 +46,9 @@ def verify_token(request: Request, x_service_token: str = Header(default="")) ->
 
 
 @app.get("/health")
-def health():
-    return {"status": "OK"}
+def health(request: Request):
+    return {"status": "OK", "engine": request.app.state.engine.name}
+
 
 # 게시글 등록 및 수정 시 Spring Boot가 호출하는 API
 @app.post("/index", response_model=IndexResponse, dependencies=[Depends(verify_token)])

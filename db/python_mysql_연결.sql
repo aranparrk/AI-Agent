@@ -36,33 +36,23 @@ CREATE TABLE commentTable (
 	FOREIGN KEY (comment_writer) REFERENCES userTable(id)
 )
 
-SHOW TABLES;
+-- JWT 인증을 도입하게 되어 맴버 테이블에 회원권한 추가
+ALTER TABLE member
+ADD COLUMN authority VARCHAR(20) NOT NULL DEFAULT 'ROLE_USER';
 
-DESC boardTable;
+-- JWT Refresh Token 저장 및 관리를 위한 테이블 생성
+-- refresh_token_id (PK)
+-- member_id (FK)
+-- token
+-- expires_at
+CREATE TABLE refresh_token (
+    refresh_token_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT NOT NULL UNIQUE,
+    token VARCHAR(512) NOT NULL,
+    expires_at DATETIME(6) NOT NULL,
 
-DESC commentTable;
+    CONSTRAINT fk_refresh_token_member
+    FOREIGN KEY (member_id)
+    REFERENCES member(member_id)
+);
 
-SELECT * FROM userTable WHERE id = 'aabb111'
-
-SELECT * FROM boardTable where board_writer = 'aabb111'
-
-
-SELECT a.board_no, a.title, b.name, a.reg_date 
-FROM boardTable a 
-JOIN userTable b
-	ON a.board_writer = b.id 
-ORDER BY a.board_no DESC
-
-SELECT * FROM commentTable
-
-DELETE FROM userTable WHERE id = 'ayj987';
-
-SELECT a.board_no, a.title, a.contents, b.comment, b.comment_writer, b.reg_date 
-FROM boardTable a 
-LEFT JOIN commentTable b
-	ON a.board_no = b.board_no
-WHERE a.board_no = %s
-
-commit;
-
-SELECT * FROM commentTable WHERE comment_writer = 'aabb111'
